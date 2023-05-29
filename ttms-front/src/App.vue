@@ -1,10 +1,10 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import Login from './views/Login/index.vue'
 </script>
 
 <template>
   <div>
-    
+    <router-view/>
   </div>
  
 </template>
