@@ -1,0 +1,30 @@
+Serve: # 服务配置
+  RunMode: "debug" # release 为生产模式
+  Address: ":9090" # 监听端口
+  ReadTimeout: 5s
+  WriteTimeout: 5s
+  DefaultContextTimeout: 30s #默认超时时间
+App:
+  Name: "mognolia"
+  Version: "1.0"
+Log: # 日志配置文件
+  Level: debug
+  LogSavePath: "../storage/Applogs/" # 日志保存路径
+  HighLevelFile: error          # 高级别日志文件名
+  LowLevelFile: info          # 低级别文件名s
+  LogFileExt: .log          # 日志文件后缀
+  MaxSize: 10 # 日志文件最大大小
+  MaxAge: 30 # 日志文件最大保存天数
+  MaxBackups: 7 # 最大备份数
+  Compress: false # 是否压缩
+Mysql:
+  user: "root"
+  password: "zxz123456"
+  host: "127.0.0.1"
+  port: 3306
+  dbName: "gin-vue-ttms"
+Redis:
+  addr: "127.0.0.1:6379"
+  password: "123456"
+  poolSize: 20
+  CacheTime: 1h

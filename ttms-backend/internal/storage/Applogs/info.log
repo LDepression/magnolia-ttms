@@ -1,0 +1,42 @@
+2023-05-29T09:06:10.964+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T09:08:31.878+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T09:08:31.878+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T09:08:31.878+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T09:08:35.426+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T09:11:01.035+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T09:11:01.035+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T09:11:01.035+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T09:11:05.088+0800	INFO	cmd/main.go:49	Server started!
+2023-05-29T09:11:48.039+0800	INFO	cmd/main.go:69	ShutDown Server...
+2023-05-29T09:11:48.039+0800	INFO	cmd/main.go:54	http: Server closed
+2023-05-29T09:11:48.039+0800	INFO	cmd/main.go:59	Server exited!
+2023-05-29T09:11:53.134+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T09:12:31.990+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T09:12:31.990+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T09:12:31.990+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T09:12:36.967+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T09:12:44.989+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T09:12:44.989+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T09:12:44.989+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T09:12:51.195+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T09:12:54.528+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T09:12:54.528+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T09:12:54.528+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T09:13:09.778+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T09:13:37.354+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T09:13:37.354+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T09:13:37.354+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T09:13:42.437+0800	INFO	cmd/main.go:47	Server started!
+2023-05-29T09:13:48.705+0800	INFO	cmd/main.go:68	ShutDown Server...
+2023-05-29T09:13:48.705+0800	INFO	cmd/main.go:53	http: Server closed
+2023-05-29T09:13:48.705+0800	INFO	cmd/main.go:58	Server exited!
+2023-05-29T09:16:09.310+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T09:16:09.322+0800	INFO	cmd/main.go:47	debug
+2023-05-29T09:16:15.769+0800	INFO	cmd/main.go:67	ShutDown Server...
+2023-05-29T09:16:15.769+0800	INFO	cmd/main.go:52	http: Server closed
+2023-05-29T09:16:15.769+0800	INFO	cmd/main.go:57	Server exited!
+2023-05-29T09:18:02.406+0800	INFO	cmd/main.go:47	Server started!
+2023-05-29T09:18:02.414+0800	INFO	cmd/main.go:48	debug
+2023-05-29T09:18:04.922+0800	INFO	cmd/main.go:68	ShutDown Server...
+2023-05-29T09:18:04.922+0800	INFO	cmd/main.go:53	http: Server closed
+2023-05-29T09:18:04.922+0800	INFO	cmd/main.go:58	Server exited!
