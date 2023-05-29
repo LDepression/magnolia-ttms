@@ -11,14 +11,11 @@ package config
 import "time"
 
 type AllConfig struct {
-	Serve    Serve    `mapstructure:"Serve"`
-	App      App      `mapstructure:"App"`
-	Log      Log      `mapstructure:"Log"`
-	Mysql    Mysql    `mapstructure:"Mysql"`
-	Redis    Redis    `mapstructure:"Redis"`
-	SMTPInfo SMTPInfo `mapstructure:"SMTPInfo"`
-	Rule     Rule     `mapstructure:"Rule"`
-	Work     Work     `mapstructure:"Work"`
+	Serve Serve `mapstructure:"Serve"`
+	App   App   `mapstructure:"App"`
+	Log   Log   `mapstructure:"Log"`
+	Mysql Mysql `mapstructure:"Mysql"`
+	Redis Redis `mapstructure:"Redis"`
 }
 type Serve struct {
 	RunMode               string        `mapstructure:"RunMode"`
@@ -57,27 +54,4 @@ type Redis struct {
 	Addr     string ` mapstructure:"addr"`
 	Password string ` mapstructure:"password"`
 	PoolSize int    `mapstructure:"poolSize"`
-}
-
-type SMTPInfo struct {
-	Host     string   `json:"host" mapstructure:"host"`
-	Port     int      `json:"port" mapstructure:"port"`
-	IsSSL    bool     `json:"isSSL" mapstructure:"isSSL"`
-	UserName string   `json:"userName" mapstructure:"userName"`
-	Password string   `json:"password" mapstructure:"password"`
-	From     string   `json:"from" mapstructure:"from"`
-	To       []string `json:"to" mapstructure:"to"`
-}
-type Rule struct {
-	DelUserTime          time.Duration `json:"delUserTime" mapstructure:"delUserTime"`                   //延时删除用户的时间
-	DelCodeTime          time.Duration `json:"delCodeTime" mapstructure:"delCodeTime"`                   //延时删除验证码的时间
-	DefaultAccountAvatar string        `json:"DefaultAccountAvatar" mapstructure:"DefaultAccountAvatar"` //账户默认的头像
-	DefaultClientTimeout time.Duration `json:"DefaultClientTimeout" mapstructure:"DefaultClientTimeout"` //客户端默认超时时间
-	FileMaxSize          int64         `json:"FileMaxSize" mapstructure:"FileMaxSize"`
-	DefaultInsertDataNum int           `json:"DefaultInsertDataNum" mapstructure:"DefaultInsertDataNum"`
-}
-type Work struct {
-	TaskChanCapacity   int `json:"taskChanCapacity" mapstructure:"taskChanCapacity"`
-	WorkerChanCapacity int `json:"workerChanCapacity" mapstructure:"workerChanCapacity"`
-	WorkerNum          int `json:"workerNum" mapstructure:"workerNum"`
 }

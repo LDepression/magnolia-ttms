@@ -28,23 +28,3 @@ Redis:
   password: "123456"
   poolSize: 20
   CacheTime: 1h
-Rule:
-  delUserTime: 60s
-  delCodeTime: 120s
-  DefaultAccountAvatar: "http://lycmall.lyc666.xyz/chat/first.jpg"
-  DefaultClientTimeout: 20s
-  FileMaxSize: 1024000
-  DefaultInsertDataNum : 50
-SMTPInfo:
-  host: "smtp.qq.com"
-  port: 465
-  userName: "1197285120@qq.com"
-  password: "sewyyjpcgfzygagb" #密码
-  isSSL: true
-  from: "1197285120@qq.com" #发件人
-  to: #接收人
-    - "1197285120@qq.com"
-Work: #工作池配置
-  taskChanCapacity: 50 # 任务队列容量
-  workerChanCapacity: 50 # 工作队列容量
-  workerNum: 10 # 工作池数量

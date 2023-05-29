@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { createStore } from 'vuex'
  
 export default createStore({
@@ -11,4 +12,19 @@ export default createStore({
   },
   modules: {
   }
+=======
+import { createStore } from 'vuex'
+ 
+export default createStore({
+  state: {
+  },
+  getters: {
+  },
+  mutations: {
+  },
+  actions: {
+  },
+  modules: {
+  }
+>>>>>>> 73d85f9 (添加注册功能)
 })

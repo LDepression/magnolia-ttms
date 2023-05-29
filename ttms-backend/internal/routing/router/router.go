@@ -9,10 +9,9 @@
 package router
 
 import (
+	"github.com/gin-gonic/gin"
 	"mognolia/internal/routing"
 	"net/http"
-
-	"github.com/gin-gonic/gin"
 )
 
 func NewRouter() *gin.Engine {
@@ -26,7 +25,6 @@ func NewRouter() *gin.Engine {
 			})
 		})
 		routing.Group.User.Init(root)
-		routing.Group.Email.Init(root)
 	}
 	return r
 }

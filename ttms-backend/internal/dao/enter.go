@@ -8,10 +8,7 @@
 
 package dao
 
-import (
-	"gorm.io/gorm"
-	"mognolia/internal/dao/redis/query"
-)
+import "gorm.io/gorm"
 
 type group struct {
 	DB    *gorm.DB

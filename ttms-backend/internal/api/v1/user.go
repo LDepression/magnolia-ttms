@@ -9,13 +9,12 @@
 package v1
 
 import (
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"mognolia/internal/api/base"
 	"mognolia/internal/logic"
 	"mognolia/internal/model/request"
 	"mognolia/internal/pkg/app"
-
-	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 )
 
 type user struct{}
@@ -28,10 +27,7 @@ func (u *user) Register(ctx *gin.Context) {
 		zap.S().Infof("should bind failed err:%v", err)
 		return
 	}
-	rsp, err := logic.Group.User.Register(ctx, param)
-	if err != nil {
+	if err := logic.Group.User.Register(ctx, param); err != nil {
 		rly.Reply(err)
-		return
 	}
-	rly.Reply(nil, rsp)
 }

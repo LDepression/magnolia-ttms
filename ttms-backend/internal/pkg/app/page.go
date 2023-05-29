@@ -1,7 +1,7 @@
 package app
 
 import (
-	"mognolia/internal/pkg/utils"
+	"ttms/internal/pkg/utils"
 
 	"github.com/gin-gonic/gin"
 )
