@@ -81,3 +81,6 @@
 2023-05-29T13:27:14.001+0800	INFO	cmd/main.go:51	http: Server closed
 2023-05-29T13:27:14.001+0800	INFO	cmd/main.go:56	Server exited!
 2023-05-29T13:27:17.955+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T13:36:38.181+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T13:36:38.186+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T13:36:38.187+0800	INFO	cmd/main.go:56	Server exited!
