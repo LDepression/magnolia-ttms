@@ -10,15 +10,17 @@ package mysql
 
 import (
 	"fmt"
+	"log"
+	"mognolia/internal/dao"
+	"mognolia/internal/global"
+	"mognolia/internal/model/automigrate"
+	"os"
+	"time"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
-	"log"
-	"mognolia/internal/dao"
-	"mognolia/internal/global"
-	"os"
-	"time"
 )
 
 func InitMySql() {
@@ -45,4 +47,5 @@ func InitMySql() {
 		panic(err)
 	}
 	dao.Group.DB = DB
+	DB.AutoMigrate(&automigrate.User{})
 }

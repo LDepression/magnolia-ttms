@@ -9,5 +9,5 @@
 package reply
 
 type RegisterRly struct {
-	UserID int64 `json:"user_id"`
+	UserID uint `json:"user_id"`
 }

@@ -3,12 +3,14 @@ module mognolia
 go 1.19
 
 require (
+	github.com/0RAJA/Rutils v1.3.9
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/gin-gonic/gin v1.9.0
 	github.com/go-playground/locales v0.14.1
 	github.com/go-playground/universal-translator v0.18.1
 	github.com/go-playground/validator/v10 v10.11.2
-	github.com/google/uuid v1.1.2
+	github.com/go-redis/redis/v8 v8.11.5
+	github.com/google/uuid v1.3.0
 	github.com/jinzhu/copier v0.3.5
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/o1egl/paseto v1.0.0
@@ -16,6 +18,7 @@ require (
 	github.com/stretchr/testify v1.8.1
 	go.uber.org/zap v1.21.0
 	golang.org/x/crypto v0.5.0
+	gopkg.in/gomail.v2 v2.0.0-20160411212932-81ebce5c23df
 	gorm.io/driver/mysql v1.5.1
 	gorm.io/gorm v1.25.1
 )
@@ -25,8 +28,10 @@ require (
 	github.com/aead/chacha20poly1305 v0.0.0-20170617001512-233f39982aeb // indirect
 	github.com/aead/poly1305 v0.0.0-20180717145839-3fee0db0b635 // indirect
 	github.com/bytedance/sonic v1.8.0 // indirect
+	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/goccy/go-json v0.10.0 // indirect
@@ -58,6 +63,7 @@ require (
 	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
+	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

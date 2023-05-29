@@ -40,3 +40,44 @@
 2023-05-29T09:18:04.922+0800	INFO	cmd/main.go:68	ShutDown Server...
 2023-05-29T09:18:04.922+0800	INFO	cmd/main.go:53	http: Server closed
 2023-05-29T09:18:04.922+0800	INFO	cmd/main.go:58	Server exited!
+2023-05-29T10:57:33.084+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T12:58:11.683+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T12:58:11.685+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T12:58:11.685+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T12:59:46.557+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T13:03:12.725+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T13:03:12.725+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T13:03:12.725+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T13:03:16.128+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T13:04:27.581+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T13:04:27.581+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T13:04:27.581+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T13:04:30.664+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T13:04:37.434+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T13:04:37.434+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T13:04:37.434+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T13:05:58.873+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T13:07:34.219+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T13:07:34.219+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T13:07:34.219+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T13:07:37.630+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T13:15:56.248+0800	INFO	v1/user.go:28	should bind failed err:Key: 'RegisterParam.Gender' Error:Field validation for 'Gender' failed on the 'oneof' tag
+2023-05-29T13:17:05.039+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T13:17:05.039+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T13:17:05.039+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T13:18:08.312+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T13:18:09.181+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T13:18:09.181+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T13:18:09.181+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T13:21:33.509+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T13:22:23.558+0800	INFO	v1/email.go:33	logic.Group.Email.SendEmail 
+2023-05-29T13:24:34.790+0800	INFO	v1/email.go:33	logic.Group.Email.SendEmail 
+2023-05-29T13:25:33.279+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T13:25:33.279+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T13:25:33.279+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T13:25:43.006+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T13:25:49.266+0800	INFO	v1/email.go:33	logic.Group.Email.SendEmail 
+2023-05-29T13:27:14.000+0800	INFO	cmd/main.go:66	ShutDown Server...
+2023-05-29T13:27:14.001+0800	INFO	cmd/main.go:51	http: Server closed
+2023-05-29T13:27:14.001+0800	INFO	cmd/main.go:56	Server exited!
+2023-05-29T13:27:17.955+0800	INFO	cmd/main.go:46	Server started!
