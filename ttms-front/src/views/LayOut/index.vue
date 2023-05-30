@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+
+</script>
 <template>
   <div class="common-layout">
     <el-container>
@@ -21,8 +23,8 @@
                     <el-icon><location /></el-icon>
                     <span>剧院管理</span>
                   </template>
-                    <el-menu-item class="item" index="1-1">演出厅管理</el-menu-item>
-                    <el-menu-item class="item" index="1-2">剧目管理</el-menu-item>
+                    <el-menu-item class="item"  index="1-1">演出厅管理</el-menu-item>
+                    <el-menu-item class="item"  index="1-2">剧目管理</el-menu-item>
                     <el-menu-item class="item" index="1-3">演出计划</el-menu-item>
                     <el-menu-item class="item" index="1-4">验票管理</el-menu-item>
                 </el-sub-menu>
@@ -64,7 +66,7 @@
             </el-col>
           </el-row>
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main><router-view></router-view></el-main>
       </el-container>
     </el-container>
   </div>
