@@ -21,6 +21,15 @@ import (
 
 type email struct{}
 
+// SendEmail
+// @Tags      email
+// @Summary   发邮件
+// @Security  BasicAuth
+// @accept    application/json
+// @Produce   application/json
+// @Param     data           query     request.SendEmailParams  true  "是否重复"
+// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误 2001:鉴权失败 200001:用户已存在 300002:发送次数过多"
+// @Router    /api/v1/email/send [post]
 func (e *email) SendEmail(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
 	var param request.SendEmailParams

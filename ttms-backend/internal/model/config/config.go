@@ -8,7 +8,9 @@
 
 package config
 
-import "time"
+import (
+	"time"
+)
 
 type AllConfig struct {
 	Serve    Serve    `mapstructure:"Serve"`
@@ -19,6 +21,7 @@ type AllConfig struct {
 	SMTPInfo SMTPInfo `mapstructure:"SMTPInfo"`
 	Rule     Rule     `mapstructure:"Rule"`
 	Work     Work     `mapstructure:"Work"`
+	Token    Token    `mapstructure:"Token"`
 }
 type Serve struct {
 	RunMode               string        `mapstructure:"RunMode"`
@@ -74,10 +77,19 @@ type Rule struct {
 	DefaultAccountAvatar string        `json:"DefaultAccountAvatar" mapstructure:"DefaultAccountAvatar"` //账户默认的头像
 	DefaultClientTimeout time.Duration `json:"DefaultClientTimeout" mapstructure:"DefaultClientTimeout"` //客户端默认超时时间
 	FileMaxSize          int64         `json:"FileMaxSize" mapstructure:"FileMaxSize"`
+	DefaultPagePerNum    int64         `json:"DefaultPagePerNum" mapstructure:"DefaultPagePer"`
 	DefaultInsertDataNum int           `json:"DefaultInsertDataNum" mapstructure:"DefaultInsertDataNum"`
 }
 type Work struct {
 	TaskChanCapacity   int `json:"taskChanCapacity" mapstructure:"taskChanCapacity"`
 	WorkerChanCapacity int `json:"workerChanCapacity" mapstructure:"workerChanCapacity"`
 	WorkerNum          int `json:"workerNum" mapstructure:"workerNum"`
+}
+
+type Token struct {
+	Key              string        `mapstructure:"key"`
+	AccessTokenTime  time.Duration `mapstructure:"accessToken"`
+	RefreshTokenTime time.Duration `mapstructure:"refreshToken"`
+	AuthType         string        `mapstructure:"AuthType"`
+	AuthKey          string        `mapstructure:"AuthKey"`
 }

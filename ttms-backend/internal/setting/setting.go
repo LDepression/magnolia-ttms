@@ -10,6 +10,7 @@ package setting
 
 import (
 	"flag"
+	"fmt"
 	"mognolia/internal/global"
 	"mognolia/internal/pkg/setting"
 	"strings"
@@ -44,6 +45,8 @@ func init() {
 	once.Do(func() {
 		setupFlag()
 		// 在调用其他组件的Init时，这个init会首先执行并且把配置文件绑定到全局的结构体上
+		fmt.Println(global.RootDir)
+		fmt.Printf("configName:%v,configType:%v，configPaths:%v\n", configName, configType, configPaths)
 		newSetting, err := setting.NewSetting(configName, configType, strings.Split(configPaths, ",")...) // 引入配置文件路径
 		if err != nil {
 			panic(err)

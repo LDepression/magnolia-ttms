@@ -30,6 +30,17 @@ func initSettings() {
 	setting.AllInit()
 }
 
+// @title        ttms
+// @version      1.0
+// @description  ttms影院管理系统
+
+// @license.name
+// @license.url
+
+// @host      127.0.0.1
+// @BasePath  /api/v1
+
+// @securityDefinitions.basic  BasicAuth
 func main() {
 	initSettings()
 	if global.Settings.Serve.RunMode == "release" {

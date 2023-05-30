@@ -27,10 +27,11 @@ var (
 
 type User struct {
 	gorm.Model
+	UserName  string `gorm:"type:varchar(255)"`
 	Email     string `gorm:"type:varchar(20);index:idx_name,unique"`
 	Password  string `gorm:"type:varchar(255)"`
 	Signature string `gorm:"type:varchar(255)"`
 	Avatar    string `gorm:"type:varchar(255);default:http://lycmall.lyc666.xyz/lycmall2/2023-04-17-22:58:18.48.jpg"`
-	Gender    Gend   `gorm:"type:varchar(3);"`
-	Role      Roler  `gorm:"type:varchar(10)"`
+	Gender    Gend   `gorm:"type:varchar(10);"`
+	Role      Roler  `gorm:"type:varchar(20)"`
 }

@@ -9,10 +9,13 @@
 package router
 
 import (
+	gs "github.com/swaggo/gin-swagger"
 	"mognolia/internal/routing"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	_ "mognolia/internal/docs"
 )
 
 func NewRouter() *gin.Engine {
@@ -25,6 +28,7 @@ func NewRouter() *gin.Engine {
 				"msg": "ok",
 			})
 		})
+		r.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))
 		routing.Group.User.Init(root)
 		routing.Group.Email.Init(root)
 	}

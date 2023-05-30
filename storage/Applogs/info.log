@@ -4,3 +4,43 @@
 2023-05-29T13:18:25.763+0800	INFO	cmd/main.go:56	Server exited!
 2023-05-29T13:18:40.535+0800	INFO	cmd/main.go:46	Server started!
 2023-05-29T13:19:18.971+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T21:53:00.932+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T21:54:17.821+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T21:55:02.457+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T21:56:35.607+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T21:56:39.928+0800	INFO	logic/user.go:43	content = []byte{0x7b, 0x22, 0x49, 0x44, 0x22, 0x3a, 0x31, 0x2c, 0x22, 0x52, 0x6f, 0x6c, 0x65, 0x22, 0x3a, 0x22, 0x76, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x22, 0x7d}
+2023-05-29T21:56:39.928+0800	INFO	logic/user.go:43	content = []byte{0x7b, 0x22, 0x49, 0x44, 0x22, 0x3a, 0x31, 0x2c, 0x22, 0x52, 0x6f, 0x6c, 0x65, 0x22, 0x3a, 0x22, 0x76, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x22, 0x7d}
+2023-05-29T21:59:08.466+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T22:00:17.954+0800	INFO	cmd/main.go:46	Server started!
+2023-05-29T22:11:05.888+0800	INFO	setting/maker.go:25	token.NewPasetoMaker failed: 密钥长度不正确
+2023-05-29T22:11:05.889+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T10:45:22.329+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T10:45:50.016+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T10:46:16.198+0800	INFO	middleware/auth.go:48	Claims
+2023-05-30T10:49:01.377+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T10:49:04.286+0800	INFO	middleware/auth.go:48	Claims
+2023-05-30T11:12:50.291+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T11:12:53.719+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-30T11:13:34.099+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T11:15:55.297+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T11:16:57.226+0800	INFO	middleware/auth.go:60	GetContext failed 
+2023-05-30T11:17:12.573+0800	INFO	middleware/auth.go:60	GetContext failed 
+2023-05-30T11:17:21.737+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T11:18:40.190+0800	INFO	middleware/auth.go:60	GetContext failed 
+2023-05-30T11:20:09.196+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T11:23:00.265+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T11:27:21.216+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T11:30:24.170+0800	INFO	middleware/auth.go:51	Claims
+2023-05-30T11:30:24.170+0800	INFO	middleware/auth.go:64	GetContext failed 
+2023-05-30T11:30:34.177+0800	INFO	middleware/auth.go:51	Claims
+2023-05-30T11:30:34.177+0800	INFO	middleware/auth.go:64	GetContext failed 
+2023-05-30T11:33:16.032+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T11:33:35.653+0800	INFO	middleware/auth.go:51	Claims
+2023-05-30T11:33:35.654+0800	INFO	middleware/auth.go:64	GetContext failed 
+2023-05-30T13:41:53.726+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T13:42:39.535+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T19:46:37.083+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T19:46:40.024+0800	INFO	middleware/auth.go:51	Claims
+2023-05-30T19:47:23.667+0800	INFO	middleware/auth.go:51	Claims
+2023-05-30T19:58:33.090+0800	INFO	cmd/main.go:46	Server started!
+2023-05-30T19:58:57.728+0800	INFO	middleware/auth.go:51	Claims

@@ -9,17 +9,33 @@
 package routing
 
 import (
-	"github.com/gin-gonic/gin"
 	v1 "mognolia/internal/api/v1"
+	"mognolia/internal/middleware"
+
+	"github.com/gin-gonic/gin"
 )
 
 type user struct{}
 
 func (u *user) Init(r *gin.RouterGroup) {
 
-	g := r.Group("/user")
+	r.POST("/register", v1.Group.User.Register)
+	r.POST("/login", v1.Group.User.Login)
+	r.GET("/isRePeat", v1.Group.User.IsRePeat)
+	r.POST("/refreshToken", v1.Group.User.RefreshToken)
+	g := r.Group("/user", middleware.Auth())
 	{
-		g.POST("/register", v1.Group.User.Register)
-		g.POST("/login")
+
+		g.POST("/findUser", v1.Group.User.FindUser)
+		g.PUT("/modifyAvatar", v1.Group.User.ModifyAvatar)
+		g.PUT("/modifyPassword", v1.Group.User.ModifyPassword)
+		g.PUT("/modifyEmail", v1.Group.User.ModifyEmail)
+		g.PUT("/updateInfo", v1.Group.User.UpdateUserInfo)
+	}
+	manager := r.Group("/manager", middleware.Auth(), middleware.AuthManager())
+	{
+		manager.GET("/list/:page", v1.Group.User.List)
+		manager.POST("/register", v1.Group.User.Register)
+		manager.DELETE("", v1.Group.User.DeleteUser)
 	}
 }

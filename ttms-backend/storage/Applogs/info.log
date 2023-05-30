@@ -1,0 +1,12 @@
+2023-05-30T20:25:24.399+0800	INFO	internal/main.go:57	Server started!
+2023-05-30T20:28:17.521+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-30T20:28:17.521+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-30T20:28:17.521+0800	INFO	internal/main.go:67	Server exited!
+2023-05-30T20:30:49.777+0800	INFO	internal/main.go:57	Server started!
+2023-05-30T20:39:03.608+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-30T20:39:03.609+0800	INFO	internal/main.go:67	Server exited!
+2023-05-30T20:39:03.609+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-30T20:39:14.447+0800	INFO	internal/main.go:57	Server started!
+2023-05-30T20:43:28.614+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-30T20:43:28.616+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-30T20:43:28.616+0800	INFO	internal/main.go:67	Server exited!

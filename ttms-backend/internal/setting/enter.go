@@ -13,6 +13,7 @@ type group struct {
 	Va     va
 	Dao    mdao
 	Worker worker
+	Maker  maker
 }
 
 var Group = new(group)
@@ -22,4 +23,5 @@ func AllInit() {
 	Group.Va.InitTrans("zh")
 	Group.Dao.Init()
 	Group.Worker.Init()
+	Group.Maker.Init()
 }

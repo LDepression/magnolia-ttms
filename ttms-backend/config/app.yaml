@@ -33,6 +33,7 @@ Rule:
   delCodeTime: 120s
   DefaultAccountAvatar: "http://lycmall.lyc666.xyz/chat/first.jpg"
   DefaultClientTimeout: 20s
+  DefaultPagePerNum: 50
   FileMaxSize: 1024000
   DefaultInsertDataNum : 50
 SMTPInfo:
@@ -48,3 +49,9 @@ Work: #工作池配置
   taskChanCapacity: 50 # 任务队列容量
   workerChanCapacity: 50 # 工作队列容量
   workerNum: 10 # 工作池数量
+Token:
+  key: "s1Qimd1a6lqEiFRh56KfA25gXoY2MEyF" #长度得是32位
+  accessToken: 24h
+  refreshToken: 48h
+  AuthType: "x_token"
+  AuthKey: "Claims"
