@@ -1,5 +1,11 @@
 <<<<<<< HEAD
+<script setup>
+
+</script>
+=======
+<<<<<<< HEAD
 <script setup></script>
+>>>>>>> 7efc7b64e6d16b80b94af0028ebc52c104220b5c
 <template>
   <div class="common-layout">
     <el-container>
@@ -22,8 +28,8 @@
                     <el-icon><location /></el-icon>
                     <span>剧院管理</span>
                   </template>
-                    <el-menu-item class="item" index="1-1">演出厅管理</el-menu-item>
-                    <el-menu-item class="item" index="1-2">剧目管理</el-menu-item>
+                    <el-menu-item class="item"  index="1-1">演出厅管理</el-menu-item>
+                    <el-menu-item class="item"  index="1-2">剧目管理</el-menu-item>
                     <el-menu-item class="item" index="1-3">演出计划</el-menu-item>
                     <el-menu-item class="item" index="1-4">验票管理</el-menu-item>
                 </el-sub-menu>
@@ -65,7 +71,7 @@
             </el-col>
           </el-row>
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main><router-view></router-view></el-main>
       </el-container>
     </el-container>
   </div>
