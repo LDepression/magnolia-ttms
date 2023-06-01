@@ -11,6 +11,7 @@ package routing
 type group struct {
 	User  user
 	Email email
+	Movie movie
 }
 
 var Group = new(group)

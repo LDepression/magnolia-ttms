@@ -1,0 +1,143 @@
+2023-05-30T22:15:40.797+0800	INFO	internal/main.go:57	Server started!
+2023-05-30T22:18:14.563+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-30T22:18:14.563+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-30T22:18:14.563+0800	INFO	internal/main.go:67	Server exited!
+2023-05-30T22:18:29.220+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T08:50:02.678+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T08:50:02.687+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T08:50:02.688+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T08:50:11.745+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T08:54:30.094+0800	INFO	v1/user.go:43	should bind failed err:EOF
+2023-05-31T08:56:18.145+0800	INFO	v1/email.go:38	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T08:58:32.479+0800	INFO	v1/email.go:38	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T08:59:08.032+0800	INFO	v1/email.go:38	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:01:09.630+0800	INFO	v1/email.go:38	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:02:06.470+0800	INFO	v1/email.go:38	ctx.ShouldBindJSON failed{err 26 0  Key: 'SendEmailParams.email' Error:Field validation for 'email' failed on the 'required' tag}
+2023-05-31T09:02:25.278+0800	INFO	v1/email.go:38	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:09:01.053+0800	INFO	v1/email.go:38	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:11:07.832+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:11:07.832+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:11:07.832+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:11:12.502+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:11:21.426+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:12:50.069+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:14:24.003+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:14:24.003+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:14:24.003+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:14:28.486+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:14:35.644+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  Key: 'SendEmailParams.Email' Error:Field validation for 'Email' failed on the 'required' tag}
+2023-05-31T09:15:10.628+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:18:28.146+0800	INFO	logic/email.go:35	其他错误
+2023-05-31T09:18:39.475+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:19:24.178+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal string into Go value of type request.SendEmailParams}
+2023-05-31T09:24:24.497+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:24:24.499+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:24:24.499+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:24:31.599+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:33:33.776+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:33:33.776+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:33:33.776+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:33:54.942+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:35:31.524+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:35:31.524+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:35:31.524+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:35:35.529+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:37:54.625+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:37:54.626+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:37:54.626+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:37:59.105+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:41:25.470+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:41:25.470+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:41:25.470+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:41:31.415+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:41:52.971+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:41:52.971+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:41:52.971+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:41:56.981+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:42:25.941+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:42:25.942+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:42:25.942+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:42:30.138+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:42:38.249+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:42:38.249+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:42:38.249+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:42:42.610+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:44:02.441+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:44:02.441+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:44:02.441+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:44:06.428+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:44:19.076+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T09:44:19.076+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T09:44:19.076+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T09:44:23.281+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T09:49:12.801+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:49:39.365+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  Key: 'SendEmailParams.Email' Error:Field validation for 'Email' failed on the 'required' tag}
+2023-05-31T09:51:27.717+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  EOF}
+2023-05-31T09:51:45.479+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:54:45.640+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  Key: 'SendEmailParams.Email' Error:Field validation for 'Email' failed on the 'required' tag}
+2023-05-31T09:55:19.428+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:59:12.387+0800	INFO	v1/email.go:40	ctx.ShouldBindJSON failed{err 26 0  json: cannot unmarshal number into Go value of type request.SendEmailParams}
+2023-05-31T09:59:40.961+0800	INFO	logic/email.go:35	其他错误
+2023-05-31T10:00:00.526+0800	INFO	logic/email.go:35	其他错误
+2023-05-31T10:00:52.558+0800	INFO	logic/email.go:35	其他错误
+2023-05-31T10:07:05.270+0800	INFO	logic/email.go:35	其他错误
+2023-05-31T10:08:55.721+0800	INFO	logic/email.go:35	其他错误
+2023-05-31T10:09:00.433+0800	INFO	logic/email.go:35	其他错误
+2023-05-31T10:09:33.895+0800	INFO	logic/email.go:35	其他错误
+2023-05-31T10:10:48.438+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T10:10:48.439+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T10:10:48.439+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T10:10:54.006+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T10:11:09.108+0800	INFO	logic/email.go:35	其他错误
+2023-05-31T10:11:23.550+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T10:11:23.550+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T10:11:23.550+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T10:12:31.514+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T10:12:41.216+0800	INFO	logic/email.go:35	failed,error: 535 Login Fail. Please enter your authorization code to login. More information in http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=1001256
+2023-05-31T10:12:41.216+0800	INFO	logic/email.go:36	其他错误
+2023-05-31T10:47:59.718+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T10:48:35.007+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T10:49:39.176+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T10:54:46.723+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T10:54:46.783+0800	INFO	v1/user.go:43	should bind failed err:Key: 'RegisterParam.UserName' Error:Field validation for 'UserName' failed on the 'required' tag
+Key: 'RegisterParam.EmailCode' Error:Field validation for 'EmailCode' failed on the 'gte' tag
+2023-05-31T10:55:58.399+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T10:55:58.454+0800	INFO	v1/user.go:43	should bind failed err:Key: 'RegisterParam.UserName' Error:Field validation for 'UserName' failed on the 'required' tag
+2023-05-31T10:58:50.894+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T11:00:17.856+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T11:01:46.656+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T11:03:01.384+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T11:09:18.302+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T11:11:13.110+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T11:13:27.700+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T11:18:21.157+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T11:18:21.158+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T11:18:21.158+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T11:28:54.880+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T11:36:30.839+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T11:38:36.808+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T11:39:36.371+0800	INFO	v1/user.go:147	logic.Group.User.FindUserInfo failed,err:错误码:20002,错误信息:用户不存在,详细信息:[]
+2023-05-31T12:21:23.561+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T12:21:23.562+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T12:21:23.562+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T12:22:31.388+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T12:22:52.128+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T12:22:52.128+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T12:22:52.128+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T12:22:58.409+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T12:51:28.360+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T12:51:28.361+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T12:51:28.361+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T12:52:41.065+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T17:21:11.772+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T17:21:11.788+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T17:21:11.788+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T17:21:45.030+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T17:38:18.719+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T17:38:18.721+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T17:38:18.721+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T17:39:17.462+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T17:51:42.065+0800	INFO	internal/main.go:77	ShutDown Server...
+2023-05-31T17:51:42.067+0800	INFO	internal/main.go:62	http: Server closed
+2023-05-31T17:51:42.067+0800	INFO	internal/main.go:67	Server exited!
+2023-05-31T17:51:58.635+0800	INFO	internal/main.go:57	Server started!

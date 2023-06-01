@@ -13,15 +13,16 @@ import (
 )
 
 type AllConfig struct {
-	Serve    Serve    `mapstructure:"Serve"`
-	App      App      `mapstructure:"App"`
-	Log      Log      `mapstructure:"Log"`
-	Mysql    Mysql    `mapstructure:"Mysql"`
-	Redis    Redis    `mapstructure:"Redis"`
-	SMTPInfo SMTPInfo `mapstructure:"SMTPInfo"`
-	Rule     Rule     `mapstructure:"Rule"`
-	Work     Work     `mapstructure:"Work"`
-	Token    Token    `mapstructure:"Token"`
+	Serve     Serve     `mapstructure:"Serve"`
+	App       App       `mapstructure:"App"`
+	Log       Log       `mapstructure:"Log"`
+	Mysql     Mysql     `mapstructure:"Mysql"`
+	Redis     Redis     `mapstructure:"Redis"`
+	SMTPInfo  SMTPInfo  `mapstructure:"SMTPInfo"`
+	Rule      Rule      `mapstructure:"Rule"`
+	Work      Work      `mapstructure:"Work"`
+	Token     Token     `mapstructure:"Token"`
+	AliyunOSS AliyunOSS `json:"AliyunOSS" mapstructure:"AliyunOSS"`
 }
 type Serve struct {
 	RunMode               string        `mapstructure:"RunMode"`
@@ -57,9 +58,10 @@ type Mysql struct {
 }
 
 type Redis struct {
-	Addr     string ` mapstructure:"addr"`
-	Password string ` mapstructure:"password"`
-	PoolSize int    `mapstructure:"poolSize"`
+	Addr      string        ` mapstructure:"addr"`
+	Password  string        ` mapstructure:"password"`
+	PoolSize  int           `mapstructure:"poolSize"`
+	CacheTime time.Duration `mapstructure:"CacheTime"`
 }
 
 type SMTPInfo struct {
@@ -92,4 +94,12 @@ type Token struct {
 	RefreshTokenTime time.Duration `mapstructure:"refreshToken"`
 	AuthType         string        `mapstructure:"AuthType"`
 	AuthKey          string        `mapstructure:"AuthKey"`
+}
+type AliyunOSS struct {
+	Endpoint        string `json:"endpoint" mapstructure:"Endpoint"`
+	AccessKeyId     string `json:"accessKeyId" mapstructure:"AccessKeyId"`
+	AccessKeySecret string `json:"accessKeySecret" mapstructure:"AccessKeySecret"`
+	BucketName      string `json:"bucketName" mapstructure:"BucketName"`
+	BucketUrl       string `json:"bucketUrl" mapstructure:"BucketUrl"`
+	BasePath        string `json:"basePath" mapstructure:"BasePath"`
 }

@@ -10,6 +10,7 @@ package router
 
 import (
 	gs "github.com/swaggo/gin-swagger"
+	"mognolia/internal/middleware"
 	"mognolia/internal/routing"
 	"net/http"
 
@@ -20,7 +21,7 @@ import (
 
 func NewRouter() *gin.Engine {
 	r := gin.New()
-	r.Use(gin.Logger(), gin.Recovery())
+	r.Use(gin.Logger(), gin.Recovery(), middleware.Cors())
 	root := r.Group("/api/v1")
 	{
 		root.GET("/ping", func(ctx *gin.Context) {
@@ -31,6 +32,7 @@ func NewRouter() *gin.Engine {
 		r.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))
 		routing.Group.User.Init(root)
 		routing.Group.Email.Init(root)
+		routing.Group.Movie.Init(root)
 	}
 	return r
 }

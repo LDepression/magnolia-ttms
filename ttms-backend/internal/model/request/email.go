@@ -9,5 +9,5 @@
 package request
 
 type SendEmailParams struct {
-	Email string `json:"email" binding:"required"`
+	Email string `json:"Email" binding:"required"`
 }

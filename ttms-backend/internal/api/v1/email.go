@@ -9,6 +9,7 @@
 package v1
 
 import (
+	"fmt"
 	"mognolia/internal/api/base"
 	"mognolia/internal/logic"
 	"mognolia/internal/model/request"
@@ -28,16 +29,18 @@ type email struct{}
 // @accept    application/json
 // @Produce   application/json
 // @Param     data           query     request.SendEmailParams  true  "是否重复"
-// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误 2001:鉴权失败 200001:用户已存在 300002:发送次数过多"
+// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 30002:发送次数过多"
 // @Router    /api/v1/email/send [post]
 func (e *email) SendEmail(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
 	var param request.SendEmailParams
 	if err := ctx.ShouldBindJSON(&param); err != nil {
+		fmt.Println(param.Email)
 		base.HandleValidatorError(ctx, err)
 		zap.S().Info("ctx.ShouldBindJSON failed", zap.Any("err", err))
 		return
 	}
+	fmt.Println(param.Email)
 	if err := logic.Group.Email.SendEmail(param.Email); err != nil {
 		zap.S().Info("logic.Group.Email.SendEmail ")
 		rly.Reply(err)

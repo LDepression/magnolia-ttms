@@ -33,7 +33,7 @@ type user struct{}
 // @accept    application/json
 // @Produce   application/json
 // @Param     data           body      request.RegisterParam  true  "注册"
-// @Success   200            {object}  common.State{reply.RegisterRly}  "1001:参数有误 1003:系统错误 200001:用户已存在 "
+// @Success   200            {object}  common.State{data=reply.RegisterRly}  "1001:参数有误 1003:系统错误 20001:用户已存在 "
 // @Router    /api/v1/register [post]
 func (u *user) Register(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
@@ -58,7 +58,7 @@ func (u *user) Register(ctx *gin.Context) {
 // @accept    application/json
 // @Produce   application/json
 // @Param     data           body      request.LoginParam  true  "登录"
-// @Success   200            {object}  common.State{reply.LoginRly}  "1001:参数有误 1003:系统错误 300001:验证码失效或者有误 200003：密码不能为空"
+// @Success   200            {object}  common.State{data=reply.LoginRly}  "1001:参数有误 1003:系统错误 30001:验证码失效或者有误 20003：密码不能为空"
 // @Router    /api/v1/login [post]
 func (u *user) Login(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
@@ -82,8 +82,8 @@ func (u *user) Login(ctx *gin.Context) {
 // @accept    application/json
 // @Produce   application/json
 // @Param     data           body      request.RefreshTokenParam  true  "刷新"
-// @Success   200            {object}  common.State{reply.RefreshRly}  "1001:参数有误 1003:系统错误 2001:鉴权失败 300003:refresh token失效"
-// @Router    /api/v1/user/refreshToken [post]
+// @Success   200            {object}  common.State{data=reply.RefreshRly}  "1001:参数有误 1003:系统错误 2001:鉴权失败 30003:refresh token失效"
+// @Router    /api/v1/refreshToken [post]
 func (u *user) RefreshToken(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
 	var param request.RefreshTokenParam
@@ -108,7 +108,7 @@ func (u *user) RefreshToken(ctx *gin.Context) {
 // @Produce   application/json
 // @Param     Authorization  header    string                 true  "x_token 用户令牌"
 // @Param     data           body      request.FindParam  true  "刷新"
-// @Success   200            {object}  common.State{reply.UserInfo}  "1001:参数有误 1003:系统错误 200002:用户不存在"
+// @Success   200            {object}  common.State{data=reply.UserInfo}  "1001:参数有误 1003:系统错误 20002:用户不存在"
 // @Router    /api/v1/user/findUser [post]
 func (u *user) FindUser(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
@@ -133,7 +133,7 @@ func (u *user) FindUser(ctx *gin.Context) {
 // @accept    application/json
 // @Produce   application/json
 // @Param     data           query      request.IsRePeat  true  "是否重复"
-// @Success   200            {object}  common.State{uint}  "1001:参数有误 1003:系统错误 2001:鉴权失败 200001:用户已存在 200002:用户不存在"
+// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 20002:用户不存在"
 // @Router    /api/v1/isRePeat [get]
 func (u *user) IsRePeat(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
@@ -159,7 +159,7 @@ func (u *user) IsRePeat(ctx *gin.Context) {
 // @Produce   application/json
 // @Param     Authorization  header    string                 true  "x_token 用户令牌"
 // @Param     page           path      string                 true  "页码"
-// @Success   200            {object}  common.State{reply.UserList}  "1001:参数有误 1003:系统错误 2001:鉴权失败 300004:权限不够 300005:无相关记录"
+// @Success   200            {object}  common.State{data=reply.UserList}  "1001:参数有误 1003:系统错误 2001:鉴权失败 30004:权限不够 30005:无相关记录"
 // @Router    /api/v1/manager/list/:page [get]
 func (u *user) List(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
@@ -191,7 +191,7 @@ func (u *user) List(ctx *gin.Context) {
 // @Produce   application/json
 // @Param     Authorization  header    string                 true  "x_token 用户令牌"
 // @Param     data           query      request.ModifyPassword true  "修改密码"
-// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  200002:用户不存在 300001:验证码有误"
+// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  20002:用户不存在 30001:验证码有误"
 // @Router    /api/v1/user/modifyPassword [put]
 func (u *user) ModifyPassword(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
@@ -215,7 +215,7 @@ func (u *user) ModifyPassword(ctx *gin.Context) {
 // @Produce   application/json
 // @Param     Authorization  header    string                 true  "x_token 用户令牌"
 // @Param     data           query     request.ModifyAvatar  true  "修改头像"
-// @Success   200            {object}  common.State{request.ModifyAvatar}  "1001:参数有误 1003:系统错误  200002:用户不存在"
+// @Success   200            {object}  common.State{data=request.ModifyAvatar}  "1001:参数有误 1003:系统错误  20002:用户不存在"
 // @Router    /api/v1/user/modifyAvatar [put]
 func (u *user) ModifyAvatar(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
@@ -239,7 +239,7 @@ func (u *user) ModifyAvatar(ctx *gin.Context) {
 // @Produce   application/json
 // @Param     Authorization  header    string                 true  "x_token 用户令牌"
 // @Param     data           query     request.ModifyEmail  true  "修改邮箱"
-// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  200002:用户不存在 300001:验证码有误"
+// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  20002:用户不存在 30001:验证码有误"
 // @Router    /api/v1/user/modifyEmail [put]
 func (u *user) ModifyEmail(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
@@ -263,7 +263,7 @@ func (u *user) ModifyEmail(ctx *gin.Context) {
 // @Produce   application/json
 // @Param     Authorization  header    string                 true  "x_token 用户令牌"
 // @Param     data           query      request.UpdateInfo  true  "修改个性签名,性别"
-// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  200002:用户不存在"
+// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  20002:用户不存在"
 // @Router    /api/v1/user/updateInfo [put]
 func (u *user) UpdateUserInfo(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
@@ -286,7 +286,7 @@ func (u *user) UpdateUserInfo(ctx *gin.Context) {
 // @Produce   application/json
 // @Param     Authorization  header    string                 true  "x_token 用户令牌"
 // @Param     data           query      request.DelUser  true  "删除用户"
-// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  200002:用户不存在"
+// @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  20002:用户不存在"
 // @Router    /api/v1/user/update [put]
 func (u *user) DeleteUser(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)

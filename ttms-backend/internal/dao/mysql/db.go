@@ -13,7 +13,6 @@ import (
 	"log"
 	"mognolia/internal/dao"
 	"mognolia/internal/global"
-	"mognolia/internal/model/automigrate"
 	"os"
 	"time"
 
@@ -47,5 +46,5 @@ func InitMySql() {
 		panic(err)
 	}
 	dao.Group.DB = DB
-	DB.AutoMigrate(&automigrate.User{})
+	DB.AutoMigrate()
 }

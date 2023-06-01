@@ -32,6 +32,7 @@ func (e *email) SendEmail(email string) errcode.Err {
 			case email2.ErrSendTooMany:
 				zap.S().Infof("发送过于频繁")
 			default:
+				zap.S().Infof("failed,error: %v", result.Error)
 				zap.S().Info("其他错误")
 			}
 

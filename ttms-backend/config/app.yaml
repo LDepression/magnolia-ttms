@@ -40,7 +40,7 @@ SMTPInfo:
   host: "smtp.qq.com"
   port: 465
   userName: "1197285120@qq.com"
-  password: "***" #密码
+  password: "sewyyjpcgfzygagb" #密码
   isSSL: true
   from: "1197285120@qq.com" #发件人
   to: #接收人
@@ -51,7 +51,14 @@ Work: #工作池配置
   workerNum: 10 # 工作池数量
 Token:
   key: "s1Qimd1a6lqEiFRh56KfA25gXoY2MEyF" #长度得是32位
-  accessToken: 24h
+  accessToken: 2m
   refreshToken: 48h
   AuthType: "x_token"
   AuthKey: "Claims"
+AliyunOSS:
+  Endpoint: "http://oss-cn-hangzhou.aliyuncs.com"
+  AccessKeyId: "LTAI5tCqWMfTeQYHzDNo5YVs"
+  AccessKeySecret: "1bxLRL16NbeQEBCCe6VLeTE5CLGGjW"
+  BucketName: "lycmall2"
+  BucketUrl: "ttms"
+  BasePath: "http://lycmall.lyc666.xyz"

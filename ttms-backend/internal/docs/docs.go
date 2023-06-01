@@ -31,20 +31,95 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "email"
+                    "movie"
                 ],
-                "summary": "发邮件",
+                "summary": "创建电影",
                 "parameters": [
                     {
                         "type": "string",
-                        "name": "email",
+                        "description": "x_token 用户令牌",
+                        "name": "x_token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "演员",
+                        "name": "actors",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "地区",
+                        "name": "area",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "avatar",
+                        "in": "query"
+                    },
+                    {
+                        "minLength": 1,
+                        "type": "string",
+                        "name": "content",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 5,
+                        "type": "string",
+                        "description": "导演",
+                        "name": "director",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "minimum": 1,
+                        "type": "integer",
+                        "description": "时长(分钟)",
+                        "name": "duration",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "电影名称",
+                        "name": "name",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "上映时间戳",
+                        "name": "show_time",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "电影标签",
+                        "name": "tags",
                         "in": "query",
                         "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 200001:用户已存在 300002:发送次数过多",
+                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 30002:发送次数过多",
                         "schema": {
                             "$ref": "#/definitions/common.State"
                         }
@@ -79,7 +154,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 200001:用户已存在 200002:用户不存在",
+                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 20002:用户不存在",
                         "schema": {
                             "$ref": "#/definitions/common.State"
                         }
@@ -117,9 +192,21 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误 300001:验证码失效或者有误 200003：密码不能为空",
+                        "description": "1001:参数有误 1003:系统错误 30001:验证码失效或者有误 20003：密码不能为空",
                         "schema": {
-                            "$ref": "#/definitions/common.State"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/common.State"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/reply.LoginRly"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -160,9 +247,21 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 300004:权限不够 300005:无相关记录",
+                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 30004:权限不够 30005:无相关记录",
                         "schema": {
-                            "$ref": "#/definitions/common.State"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/common.State"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/reply.UserList"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -198,9 +297,21 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误 200001:用户已存在 ",
+                        "description": "1001:参数有误 1003:系统错误 20001:用户已存在 ",
                         "schema": {
-                            "$ref": "#/definitions/common.State"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/common.State"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/reply.RegisterRly"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -243,9 +354,21 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误 200002:用户不存在",
+                        "description": "1001:参数有误 1003:系统错误 20002:用户不存在",
                         "schema": {
-                            "$ref": "#/definitions/common.State"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/common.State"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/reply.UserInfo"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -285,9 +408,21 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误  200002:用户不存在",
+                        "description": "1001:参数有误 1003:系统错误  20002:用户不存在",
                         "schema": {
-                            "$ref": "#/definitions/common.State"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/common.State"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/request.ModifyAvatar"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -335,7 +470,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误  200002:用户不存在 300001:验证码有误",
+                        "description": "1001:参数有误 1003:系统错误  20002:用户不存在 30001:验证码有误",
                         "schema": {
                             "$ref": "#/definitions/common.State"
                         }
@@ -385,7 +520,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误  200002:用户不存在 300001:验证码有误",
+                        "description": "1001:参数有误 1003:系统错误  20002:用户不存在 30001:验证码有误",
                         "schema": {
                             "$ref": "#/definitions/common.State"
                         }
@@ -423,9 +558,21 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 300003:refresh token失效",
+                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 30003:refresh token失效",
                         "schema": {
-                            "$ref": "#/definitions/common.State"
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/common.State"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/reply.RefreshRly"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -465,7 +612,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误  200002:用户不存在",
+                        "description": "1001:参数有误 1003:系统错误  20002:用户不存在",
                         "schema": {
                             "$ref": "#/definitions/common.State"
                         }
@@ -511,7 +658,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误  200002:用户不存在",
+                        "description": "1001:参数有误 1003:系统错误  20002:用户不存在",
                         "schema": {
                             "$ref": "#/definitions/common.State"
                         }
@@ -534,6 +681,90 @@ const docTemplate = `{
                 "status_msg": {
                     "description": "返回状态描述",
                     "type": "string"
+                }
+            }
+        },
+        "reply.LoginRly": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "type": "string"
+                },
+                "Payload": {
+                    "$ref": "#/definitions/token.Payload"
+                },
+                "RefreshToken": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "user_info": {
+                    "$ref": "#/definitions/reply.UserInfoReply"
+                }
+            }
+        },
+        "reply.RefreshRly": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "type": "string"
+                }
+            }
+        },
+        "reply.RegisterRly": {
+            "type": "object",
+            "properties": {
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "reply.UserInfo": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "signature": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "reply.UserInfoReply": {
+            "type": "object",
+            "properties": {
+                "AvatarURL": {
+                    "type": "string"
+                },
+                "Role": {
+                    "type": "string"
+                },
+                "user_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "reply.UserList": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "type": "integer"
+                },
+                "user_infos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/reply.UserInfo"
+                    }
                 }
             }
         },
@@ -570,6 +801,17 @@ const docTemplate = `{
                 },
                 "Password": {
                     "description": "密码",
+                    "type": "string"
+                }
+            }
+        },
+        "request.ModifyAvatar": {
+            "type": "object",
+            "required": [
+                "newAvatar"
+            ],
+            "properties": {
+                "newAvatar": {
                     "type": "string"
                 }
             }
@@ -632,6 +874,29 @@ const docTemplate = `{
                 },
                 "UserName": {
                     "description": "用户名",
+                    "type": "string"
+                }
+            }
+        },
+        "token.Payload": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "description": "可以是用户或者是账户",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "expired-at": {
+                    "type": "string"
+                },
+                "id": {
+                    "description": "用于管理每个JWT",
+                    "type": "string"
+                },
+                "issued-at": {
+                    "description": "创建时间用于检验",
                     "type": "string"
                 }
             }
