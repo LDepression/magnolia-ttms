@@ -141,3 +141,65 @@ Key: 'RegisterParam.EmailCode' Error:Field validation for 'EmailCode' failed on 
 2023-05-31T17:51:42.067+0800	INFO	internal/main.go:62	http: Server closed
 2023-05-31T17:51:42.067+0800	INFO	internal/main.go:67	Server exited!
 2023-05-31T17:51:58.635+0800	INFO	internal/main.go:57	Server started!
+2023-05-31T18:10:47.595+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:12:31.763+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:12:56.902+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:13:14.021+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:13:18.348+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:13:18.545+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:13:19.601+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:14:01.423+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:14:36.992+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:14:57.831+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:15:53.113+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:16:54.669+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:17:46.684+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:18:21.581+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:19:13.434+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:19:43.294+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:20:54.550+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:21:05.416+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:22:22.642+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:22:57.984+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:23:21.266+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:24:10.425+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:25:46.140+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:27:07.638+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:27:18.046+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:27:49.301+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:27:49.909+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:27:59.029+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:29:06.431+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:33:41.924+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:34:52.417+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:35:55.556+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:36:10.429+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:36:11.747+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:36:15.003+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:36:21.518+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:36:22.243+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:36:22.378+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:36:22.515+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:36:30.195+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:37:38.192+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:38:29.624+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T18:39:31.378+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:40:32.615+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T18:43:02.763+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T19:11:34.895+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:11:35.772+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:11:35.972+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:11:45.804+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:11:56.763+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:14:23.060+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:23:07.192+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:23:35.307+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:25:11.660+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:25:55.212+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:26:10.736+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:26:25.525+0800	INFO	v1/user.go:96	RefreshToken generated error
+2023-05-31T19:36:56.408+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T19:50:23.361+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T19:51:42.210+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T19:51:53.190+0800	INFO	middleware/auth.go:51	Claims
+2023-05-31T22:46:20.505+0800	INFO	middleware/auth.go:51	Claims
