@@ -35,7 +35,7 @@ func (tag) AddTagForMovie(ctx *gin.Context) {
 func (tag) GetTagsFromMovie(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
 	var param request.GetTagsParam
-	if err := ctx.ShouldBindQuery(&param); err != nil {
+	if err := ctx.ShouldBindJSON(&param); err != nil {
 		base.HandleValidatorError(ctx, err)
 		return
 	}

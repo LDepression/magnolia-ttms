@@ -9,9 +9,16 @@
 package routing
 
 type group struct {
-	User  user
-	Email email
-	Movie movie
+	User   user
+	Email  email
+	Movie  movie
+	File   file
+	Pm     pm
+	Tag    tag
+	Cinema cinema
+	Plan   plan
+	Seat   seat
+	Ticket ticket
 }
 
 var Group = new(group)

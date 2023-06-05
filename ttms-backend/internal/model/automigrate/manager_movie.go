@@ -13,10 +13,8 @@ import "gorm.io/gorm"
 type ManagerMovie struct {
 	gorm.Model
 	MovieID uint
-	Movie   Movie `gorm:"foreignKey:MovieID;references:ID"`
 
 	UserID uint
-	User   User `gorm:"foreignKey:UserID;references:ID"`
 
 	Content string `gorm:"type:varchar(1000)"`
 }

@@ -24,6 +24,14 @@ func (t *tag) AddTagsForMovie(movieID uint, tags []string) errcode.Err {
 		return myerr.NoRecords
 	}
 	qt := query.NewTag()
+	tagsInfo, err := qt.GetTagsFromMovie(movieID)
+	if err != nil {
+		return errcode.ErrServer.WithDetails(err.Error())
+	}
+	for _, tag := range tagsInfo.Tags {
+		t := tag
+		tags = append(tags, t)
+	}
 	if err := qt.AddTagForMovie(movieID, tags); err != nil {
 		return errcode.ErrServer
 	}

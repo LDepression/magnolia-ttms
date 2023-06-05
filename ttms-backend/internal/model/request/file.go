@@ -11,5 +11,5 @@ package request
 import "mime/multipart"
 
 type FileParam struct {
-	File *multipart.FileHeader `json:"file" binding:"required"`
+	File *multipart.FileHeader `json:"File"`
 }

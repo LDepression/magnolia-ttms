@@ -9,11 +9,16 @@
 package v1
 
 type group struct {
-	User  user
-	Email email
-	Movie movie
-	File  file
-	Tag   tag
+	User   user
+	Email  email
+	Movie  movie
+	File   file
+	Tag    tag
+	Pm     pm
+	Plan   plan
+	Seat   seat
+	Cinema cinema
+	Ticket ticket
 }
 
 var Group = new(group)

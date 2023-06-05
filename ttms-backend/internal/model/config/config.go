@@ -23,6 +23,7 @@ type AllConfig struct {
 	Work      Work      `mapstructure:"Work"`
 	Token     Token     `mapstructure:"Token"`
 	AliyunOSS AliyunOSS `json:"AliyunOSS" mapstructure:"AliyunOSS"`
+	Auto      Auto      `mapstructure:"Auto"`
 }
 type Serve struct {
 	RunMode               string        `mapstructure:"RunMode"`
@@ -79,8 +80,10 @@ type Rule struct {
 	DefaultAccountAvatar string        `json:"DefaultAccountAvatar" mapstructure:"DefaultAccountAvatar"` //账户默认的头像
 	DefaultClientTimeout time.Duration `json:"DefaultClientTimeout" mapstructure:"DefaultClientTimeout"` //客户端默认超时时间
 	FileMaxSize          int64         `json:"FileMaxSize" mapstructure:"FileMaxSize"`
-	DefaultPagePerNum    int64         `json:"DefaultPagePerNum" mapstructure:"DefaultPagePer"`
+	DefaultPagePerNum    int64         `json:"DefaultPagePerNum" mapstructure:"DefaultPagePerNum"`
 	DefaultInsertDataNum int           `json:"DefaultInsertDataNum" mapstructure:"DefaultInsertDataNum"`
+	DefaultUserFavorPage int           `json:"DefaultUserFavorPage" mapstructure:"DefaultUserFavorPage"` //用户关注的电影的页数
+	DefaultUserFavorSize int           `json:"DefaultUserFavorSize" mapstructure:"DefaultUserFavorSize"` //用户每页关注的数量
 }
 type Work struct {
 	TaskChanCapacity   int `json:"taskChanCapacity" mapstructure:"taskChanCapacity"`
@@ -102,4 +105,9 @@ type AliyunOSS struct {
 	BucketName      string `json:"bucketName" mapstructure:"BucketName"`
 	BucketUrl       string `json:"bucketUrl" mapstructure:"BucketUrl"`
 	BasePath        string `json:"basePath" mapstructure:"BasePath"`
+}
+
+type Auto struct {
+	AutoFlushReadCount2DBTime time.Duration `json:"autoFlushReadCount2DBTime" mapstructure:"AutoFlushReadCount2DBTime"`
+	PeopleFavorToCacheTime    time.Duration `json:"peopleFavorToCacheTime" mapstructure:"PeopleFavorToCacheTime"`
 }

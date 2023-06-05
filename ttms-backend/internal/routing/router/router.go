@@ -33,6 +33,11 @@ func NewRouter() *gin.Engine {
 		routing.Group.User.Init(root)
 		routing.Group.Email.Init(root)
 		routing.Group.Movie.Init(root)
+		routing.Group.File.Init(root)
+		routing.Group.Tag.Init(root)
+		routing.Group.Pm.Init(root)
+		routing.Group.Seat.Init(root)
+		routing.Group.Cinema.Init(root)
 	}
 	return r
 }

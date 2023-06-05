@@ -8,8 +8,6 @@
 
 package reply
 
-import "time"
-
 type CreateMovieRly struct {
 	MovieID uint `json:"movieID"`
 }
@@ -19,17 +17,15 @@ type GetMovieRly struct {
 }
 
 type MovieInfo struct {
-	MovieID    uint      `json:"movieID"`
-	Name       string    `json:"name"`
-	Area       string    `json:"area"`
-	Actors     []string  `json:"actors"`
-	Content    string    `json:"content"`
-	Duration   int64     `json:"duration"`
-	ShowTime   time.Time `json:"showTime"`
-	Director   string    `json:"director"`
-	Score      float32   `json:"score"`
-	BoxOffice  float32   `json:"boxOffice"`
-	VisitCount int       `json:"visitCount"`
+	MovieID   uint     `json:"movieID"`
+	Avatar    string   `json:"avatar"`
+	Name      string   `json:"name"`
+	Actors    []string `json:"actors"`
+	Director  string   `json:"director"`
+	Duration  int64    `json:"duration"`
+	ShowTime  string   `json:"showTime"`
+	Score     float32  `json:"score"`
+	BoxOffice float32  `json:"boxOffice"`
 }
 
 type GetMovieDetails struct {

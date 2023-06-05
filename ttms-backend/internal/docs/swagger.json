@@ -24,9 +24,44 @@
                     "application/json"
                 ],
                 "tags": [
-                    "movie"
+                    "email"
                 ],
-                "summary": "创建电影",
+                "summary": "发邮件",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "Email",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 30002:发送次数过多",
+                        "schema": {
+                            "$ref": "#/definitions/common.State"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/file/send": {
+            "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "file"
+                ],
+                "summary": "上传文件",
                 "parameters": [
                     {
                         "type": "string",
@@ -36,83 +71,16 @@
                         "required": true
                     },
                     {
-                        "minItems": 1,
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "演员",
-                        "name": "actors",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "maxLength": 20,
-                        "minLength": 1,
-                        "type": "string",
-                        "description": "地区",
-                        "name": "area",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "name": "avatar",
-                        "in": "query"
-                    },
-                    {
-                        "minLength": 1,
-                        "type": "string",
-                        "name": "content",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "maxLength": 5,
-                        "type": "string",
-                        "description": "导演",
-                        "name": "director",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "minimum": 1,
-                        "type": "integer",
-                        "description": "时长(分钟)",
-                        "name": "duration",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "maxLength": 20,
-                        "minLength": 1,
-                        "type": "string",
-                        "description": "电影名称",
-                        "name": "name",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "上映时间戳",
-                        "name": "show_time",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "电影标签",
-                        "name": "tags",
-                        "in": "query",
+                        "type": "file",
+                        "description": "文件",
+                        "name": "file",
+                        "in": "formData",
                         "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 30002:发送次数过多",
+                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 ",
                         "schema": {
                             "$ref": "#/definitions/common.State"
                         }
@@ -226,7 +194,7 @@
                     {
                         "type": "string",
                         "description": "x_token 用户令牌",
-                        "name": "Authorization",
+                        "name": "x_token",
                         "in": "header",
                         "required": true
                     },
@@ -251,6 +219,250 @@
                                     "properties": {
                                         "data": {
                                             "$ref": "#/definitions/reply.UserList"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/movie/create": {
+            "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "movie"
+                ],
+                "summary": "创建电影",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "x_token 用户令牌",
+                        "name": "x_token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "minItems": 1,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "演员",
+                        "name": "actors",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "地区",
+                        "name": "area",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "avatar",
+                        "in": "query"
+                    },
+                    {
+                        "minLength": 1,
+                        "type": "string",
+                        "name": "content",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 5,
+                        "type": "string",
+                        "description": "导演",
+                        "name": "director",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "minimum": 1,
+                        "type": "integer",
+                        "description": "时长(分钟)",
+                        "name": "duration",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "maxLength": 20,
+                        "minLength": 1,
+                        "type": "string",
+                        "description": "电影名称",
+                        "name": "name",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "上映时间戳",
+                        "name": "show_time",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "电影标签",
+                        "name": "tags",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 30002:发送次数过多",
+                        "schema": {
+                            "$ref": "#/definitions/common.State"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/movie/delete": {
+            "delete": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "movie"
+                ],
+                "summary": "删除电影(不能删除在演出计划里面的)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "x_token 用户令牌",
+                        "name": "x_token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "name": "movie_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败",
+                        "schema": {
+                            "$ref": "#/definitions/common.State"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/movie/detail": {
+            "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "movie"
+                ],
+                "summary": "获取电影详细信息",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "x_token 用户令牌",
+                        "name": "x_token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "name": "movieID",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 ",
+                        "schema": {
+                            "$ref": "#/definitions/common.State"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/refreshToken": {
+            "post": {
+                "security": [
+                    {
+                        "BasicAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "刷新token",
+                "parameters": [
+                    {
+                        "description": "刷新",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.RefreshTokenParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 30003:refresh token失效",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/common.State"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/reply.RefreshRly"
                                         }
                                     }
                                 }
@@ -331,7 +543,7 @@
                     {
                         "type": "string",
                         "description": "x_token 用户令牌",
-                        "name": "Authorization",
+                        "name": "x_token",
                         "in": "header",
                         "required": true
                     },
@@ -388,7 +600,7 @@
                     {
                         "type": "string",
                         "description": "x_token 用户令牌",
-                        "name": "Authorization",
+                        "name": "x_token",
                         "in": "header",
                         "required": true
                     },
@@ -442,7 +654,7 @@
                     {
                         "type": "string",
                         "description": "x_token 用户令牌",
-                        "name": "Authorization",
+                        "name": "x_token",
                         "in": "header",
                         "required": true
                     },
@@ -492,7 +704,7 @@
                     {
                         "type": "string",
                         "description": "x_token 用户令牌",
-                        "name": "Authorization",
+                        "name": "x_token",
                         "in": "header",
                         "required": true
                     },
@@ -521,56 +733,6 @@
                 }
             }
         },
-        "/api/v1/user/refreshToken": {
-            "post": {
-                "security": [
-                    {
-                        "BasicAuth": []
-                    }
-                ],
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "user"
-                ],
-                "summary": "刷新token",
-                "parameters": [
-                    {
-                        "description": "刷新",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.RefreshTokenParam"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "1001:参数有误 1003:系统错误 2001:鉴权失败 30003:refresh token失效",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/common.State"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "$ref": "#/definitions/reply.RefreshRly"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                }
-            }
-        },
         "/api/v1/user/update": {
             "put": {
                 "security": [
@@ -592,7 +754,7 @@
                     {
                         "type": "string",
                         "description": "x_token 用户令牌",
-                        "name": "Authorization",
+                        "name": "x_token",
                         "in": "header",
                         "required": true
                     },
@@ -634,7 +796,7 @@
                     {
                         "type": "string",
                         "description": "x_token 用户令牌",
-                        "name": "Authorization",
+                        "name": "x_token",
                         "in": "header",
                         "required": true
                     },

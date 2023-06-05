@@ -172,6 +172,135 @@ paths:
       consumes:
       - application/json
       parameters:
+      - in: query
+        name: Email
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 30002:发送次数过多
+          schema:
+            $ref: '#/definitions/common.State'
+      security:
+      - BasicAuth: []
+      summary: 发邮件
+      tags:
+      - email
+  /api/v1/file/send:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: x_token 用户令牌
+        in: header
+        name: x_token
+        required: true
+        type: string
+      - description: 文件
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '1001:参数有误 1003:系统错误 2001:鉴权失败 '
+          schema:
+            $ref: '#/definitions/common.State'
+      security:
+      - BasicAuth: []
+      summary: 上传文件
+      tags:
+      - file
+  /api/v1/isRePeat:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - in: query
+        name: Username
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 20002:用户不存在
+          schema:
+            $ref: '#/definitions/common.State'
+      security:
+      - BasicAuth: []
+      summary: 判断用户名是否存在
+      tags:
+      - user
+  /api/v1/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 登录
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.LoginParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 1001:参数有误 1003:系统错误 30001:验证码失效或者有误 20003：密码不能为空
+          schema:
+            allOf:
+            - $ref: '#/definitions/common.State'
+            - properties:
+                data:
+                  $ref: '#/definitions/reply.LoginRly'
+              type: object
+      security:
+      - BasicAuth: []
+      summary: 登录
+      tags:
+      - user
+  /api/v1/manager/list/:page:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: x_token 用户令牌
+        in: header
+        name: x_token
+        required: true
+        type: string
+      - description: 页码
+        in: path
+        name: page
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 1001:参数有误 1003:系统错误 2001:鉴权失败 30004:权限不够 30005:无相关记录
+          schema:
+            allOf:
+            - $ref: '#/definitions/common.State'
+            - properties:
+                data:
+                  $ref: '#/definitions/reply.UserList'
+              type: object
+      security:
+      - BasicAuth: []
+      summary: 获取用户列表
+      tags:
+      - manager
+  /api/v1/movie/create:
+    post:
+      consumes:
+      - application/json
+      parameters:
       - description: x_token 用户令牌
         in: header
         name: x_token
@@ -243,87 +372,86 @@ paths:
       summary: 创建电影
       tags:
       - movie
-  /api/v1/isRePeat:
-    get:
-      consumes:
-      - application/json
-      parameters:
-      - in: query
-        name: Username
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 20002:用户不存在
-          schema:
-            $ref: '#/definitions/common.State'
-      security:
-      - BasicAuth: []
-      summary: 判断用户名是否存在
-      tags:
-      - user
-  /api/v1/login:
-    post:
-      consumes:
-      - application/json
-      parameters:
-      - description: 登录
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/request.LoginParam'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 1001:参数有误 1003:系统错误 30001:验证码失效或者有误 20003：密码不能为空
-          schema:
-            allOf:
-            - $ref: '#/definitions/common.State'
-            - properties:
-                data:
-                  $ref: '#/definitions/reply.LoginRly'
-              type: object
-      security:
-      - BasicAuth: []
-      summary: 登录
-      tags:
-      - user
-  /api/v1/manager/list/:page:
-    get:
+  /api/v1/movie/delete:
+    delete:
       consumes:
       - application/json
       parameters:
       - description: x_token 用户令牌
         in: header
-        name: Authorization
+        name: x_token
         required: true
         type: string
-      - description: 页码
-        in: path
-        name: page
+      - in: query
+        name: movie_id
         required: true
-        type: string
+        type: integer
       produces:
       - application/json
       responses:
         "200":
-          description: 1001:参数有误 1003:系统错误 2001:鉴权失败 30004:权限不够 30005:无相关记录
+          description: 1001:参数有误 1003:系统错误 2001:鉴权失败
+          schema:
+            $ref: '#/definitions/common.State'
+      security:
+      - BasicAuth: []
+      summary: 删除电影(不能删除在演出计划里面的)
+      tags:
+      - movie
+  /api/v1/movie/detail:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: x_token 用户令牌
+        in: header
+        name: x_token
+        required: true
+        type: string
+      - in: query
+        name: movieID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '1001:参数有误 1003:系统错误 2001:鉴权失败 '
+          schema:
+            $ref: '#/definitions/common.State'
+      security:
+      - BasicAuth: []
+      summary: 获取电影详细信息
+      tags:
+      - movie
+  /api/v1/refreshToken:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 刷新
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.RefreshTokenParam'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 1001:参数有误 1003:系统错误 2001:鉴权失败 30003:refresh token失效
           schema:
             allOf:
             - $ref: '#/definitions/common.State'
             - properties:
                 data:
-                  $ref: '#/definitions/reply.UserList'
+                  $ref: '#/definitions/reply.RefreshRly'
               type: object
       security:
       - BasicAuth: []
-      summary: 获取用户列表
+      summary: 刷新token
       tags:
-      - manager
+      - user
   /api/v1/register:
     post:
       consumes:
@@ -359,7 +487,7 @@ paths:
       parameters:
       - description: x_token 用户令牌
         in: header
-        name: Authorization
+        name: x_token
         required: true
         type: string
       - description: 刷新
@@ -392,7 +520,7 @@ paths:
       parameters:
       - description: x_token 用户令牌
         in: header
-        name: Authorization
+        name: x_token
         required: true
         type: string
       - in: query
@@ -423,7 +551,7 @@ paths:
       parameters:
       - description: x_token 用户令牌
         in: header
-        name: Authorization
+        name: x_token
         required: true
         type: string
       - in: query
@@ -455,7 +583,7 @@ paths:
       parameters:
       - description: x_token 用户令牌
         in: header
-        name: Authorization
+        name: x_token
         required: true
         type: string
       - in: query
@@ -480,34 +608,6 @@ paths:
       summary: 用户修改密码
       tags:
       - user
-  /api/v1/user/refreshToken:
-    post:
-      consumes:
-      - application/json
-      parameters:
-      - description: 刷新
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/request.RefreshTokenParam'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 1001:参数有误 1003:系统错误 2001:鉴权失败 30003:refresh token失效
-          schema:
-            allOf:
-            - $ref: '#/definitions/common.State'
-            - properties:
-                data:
-                  $ref: '#/definitions/reply.RefreshRly'
-              type: object
-      security:
-      - BasicAuth: []
-      summary: 刷新token
-      tags:
-      - user
   /api/v1/user/update:
     put:
       consumes:
@@ -515,7 +615,7 @@ paths:
       parameters:
       - description: x_token 用户令牌
         in: header
-        name: Authorization
+        name: x_token
         required: true
         type: string
       - in: query
@@ -541,7 +641,7 @@ paths:
       parameters:
       - description: x_token 用户令牌
         in: header
-        name: Authorization
+        name: x_token
         required: true
         type: string
       - in: query

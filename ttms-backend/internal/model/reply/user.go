@@ -18,6 +18,8 @@ type UserInfoReply struct {
 	AvatarURL string `json:"AvatarURL"`
 	Role      string `json:"Role"`
 	UserName  string `json:"user_name"`
+	Email     string `json:"email"`
+	Signature string `json:"signature"`
 }
 type LoginRly struct {
 	UserID       uint           `json:"user_id"`

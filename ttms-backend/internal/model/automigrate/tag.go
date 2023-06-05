@@ -10,9 +10,10 @@ package automigrate
 
 import "gorm.io/gorm"
 
+type TagType []string
 type Tag struct {
 	gorm.Model
 	MovieID uint
-	Movie   Movie `gorm:"foreignKey:MovieID;references:ID"`
-	Tags    []string
+	Movie   Movie   `gorm:"foreignKey:MovieID;references:ID"`
+	Tags    TagType `gorm:"type:varchar(255);not null"`
 }

@@ -1,0 +1,1 @@
+2023-06-01T20:57:32.622+0800	ERROR	v1/user.go:116	ctx.ShouldBindJSON failed

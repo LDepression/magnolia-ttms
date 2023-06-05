@@ -20,7 +20,7 @@ func NewTag() *tag {
 }
 
 func (tag) AddTagForMovie(movieID uint, tags []string) error {
-	result := dao.Group.DB.Model(&automigrate.Tag{}).Where("movie_id = ?", movieID).Save(&automigrate.Tag{Tags: tags})
+	result := dao.Group.DB.Model(&automigrate.Tag{}).Where("movie_id = ?", movieID).Updates(&automigrate.Tag{Tags: tags})
 	return result.Error
 }
 

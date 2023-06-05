@@ -10,7 +10,6 @@ package query
 
 import (
 	"mognolia/internal/dao"
-	"mognolia/internal/global"
 	"mognolia/internal/model/automigrate"
 	"mognolia/internal/model/request"
 
@@ -54,9 +53,9 @@ func (u *user) Register(us request.RegisterParam, hashPassword string, role auto
 	return user, nil
 }
 
-func (u *user) GetList(page int64) ([]automigrate.User, error) {
+func (u *user) GetList() ([]automigrate.User, error) {
 	var UserInfos []automigrate.User
-	if result := dao.Group.DB.Model(&automigrate.User{}).Scopes(Paginate(int(page), int(global.Settings.Rule.DefaultPagePerNum))).Find(&UserInfos); result.RowsAffected == 0 {
+	if result := dao.Group.DB.Model(&automigrate.User{}).Find(&UserInfos); result.RowsAffected == 0 {
 		return nil, gorm.ErrRecordNotFound
 	}
 	return UserInfos, nil
@@ -102,5 +101,9 @@ func (u user) DelUser(uid uint) error {
 		return gorm.ErrRecordNotFound
 	}
 	return nil
+}
 
+func (user) UpdateUserRole(userName string) error {
+	result := dao.Group.DB.Model(&automigrate.User{}).Where("user_name =?", userName).Updates(&automigrate.User{Role: automigrate.Admin})
+	return result.Error
 }

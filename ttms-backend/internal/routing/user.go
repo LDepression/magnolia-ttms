@@ -9,11 +9,9 @@
 package routing
 
 import (
+	"github.com/gin-gonic/gin"
 	v1 "mognolia/internal/api/v1"
 	"mognolia/internal/middleware"
-	"net/http"
-
-	"github.com/gin-gonic/gin"
 )
 
 type user struct{}
@@ -33,16 +31,12 @@ func (u *user) Init(r *gin.RouterGroup) {
 		g.PUT("/modifyEmail", v1.Group.User.ModifyEmail)
 		g.PUT("/updateInfo", v1.Group.User.UpdateUserInfo)
 
-		g.GET("/ping", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "pong",
-			})
-		})
 	}
 	manager := r.Group("/manager", middleware.Auth(), middleware.AuthManager())
 	{
-		manager.GET("/list/:page", v1.Group.User.List)
+		manager.GET("/list", v1.Group.User.List)
 		manager.POST("/register", v1.Group.User.Register)
 		manager.DELETE("", v1.Group.User.DeleteUser)
+		manager.POST("/createManager", v1.Group.User.CreateManager)
 	}
 }

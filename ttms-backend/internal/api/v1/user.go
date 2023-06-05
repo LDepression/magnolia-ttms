@@ -9,6 +9,9 @@
 package v1
 
 import (
+	"fmt"
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"mognolia/internal/api/base"
 	"mognolia/internal/global"
 	"mognolia/internal/logic"
@@ -18,10 +21,6 @@ import (
 	"mognolia/internal/myerr"
 	"mognolia/internal/pkg/app"
 	"mognolia/internal/pkg/app/errcode"
-	"mognolia/internal/pkg/utils"
-
-	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 )
 
 type user struct{}
@@ -106,7 +105,7 @@ func (u *user) RefreshToken(ctx *gin.Context) {
 // @Security  BasicAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     Authorization  header    string                 true  "x_token 用户令牌"
+// @Param     x_token  header    string                 true  "x_token 用户令牌"
 // @Param     data           body      request.FindParam  true  "刷新"
 // @Success   200            {object}  common.State{data=reply.UserInfo}  "1001:参数有误 1003:系统错误 20002:用户不存在"
 // @Router    /api/v1/user/findUser [post]
@@ -157,10 +156,10 @@ func (u *user) IsRePeat(ctx *gin.Context) {
 // @Security  BasicAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     Authorization  header    string                 true  "x_token 用户令牌"
+// @Param     x_token  header    string                 true  "x_token 用户令牌"
 // @Param     page           path      string                 true  "页码"
 // @Success   200            {object}  common.State{data=reply.UserList}  "1001:参数有误 1003:系统错误 2001:鉴权失败 30004:权限不够 30005:无相关记录"
-// @Router    /api/v1/manager/list/:page [get]
+// @Router    /api/v1/manager/list [get]
 func (u *user) List(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
 	content, err := middleware.GetContext(ctx)
@@ -172,9 +171,9 @@ func (u *user) List(ctx *gin.Context) {
 		rly.Reply(myerr.AuthNotEnough)
 		return
 	}
-	iPage := ctx.Query("page")
-	page := utils.StringToIDMust(iPage)
-	rsp, err := logic.Group.User.GetList(page)
+	//i := ctx.Query("page")
+	//istr := utils.StringToIDMust(i)
+	rsp, err := logic.Group.User.GetList()
 	if err != nil {
 		rly.Reply(err)
 		zap.S().Infof("logic group user list failed: %v", err)
@@ -189,7 +188,7 @@ func (u *user) List(ctx *gin.Context) {
 // @Security  BasicAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     Authorization  header    string                 true  "x_token 用户令牌"
+// @Param     x_token  header    string                 true  "x_token 用户令牌"
 // @Param     data           query      request.ModifyPassword true  "修改密码"
 // @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  20002:用户不存在 30001:验证码有误"
 // @Router    /api/v1/user/modifyPassword [put]
@@ -213,7 +212,7 @@ func (u *user) ModifyPassword(ctx *gin.Context) {
 // @Security  BasicAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     Authorization  header    string                 true  "x_token 用户令牌"
+// @Param     x_token  header    string                 true  "x_token 用户令牌"
 // @Param     data           query     request.ModifyAvatar  true  "修改头像"
 // @Success   200            {object}  common.State{data=request.ModifyAvatar}  "1001:参数有误 1003:系统错误  20002:用户不存在"
 // @Router    /api/v1/user/modifyAvatar [put]
@@ -222,6 +221,7 @@ func (u *user) ModifyAvatar(ctx *gin.Context) {
 	var param request.ModifyAvatar
 	if err := ctx.ShouldBindJSON(&param); err != nil {
 		base.HandleValidatorError(ctx, err)
+		fmt.Println(err)
 		return
 	}
 	if err := logic.Group.User.ModifyAvatar(ctx, param.NewAvatar); err != nil {
@@ -237,7 +237,7 @@ func (u *user) ModifyAvatar(ctx *gin.Context) {
 // @Security  BasicAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     Authorization  header    string                 true  "x_token 用户令牌"
+// @Param     x_token  header    string                 true  "x_token 用户令牌"
 // @Param     data           query     request.ModifyEmail  true  "修改邮箱"
 // @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  20002:用户不存在 30001:验证码有误"
 // @Router    /api/v1/user/modifyEmail [put]
@@ -261,7 +261,7 @@ func (u *user) ModifyEmail(ctx *gin.Context) {
 // @Security  BasicAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     Authorization  header    string                 true  "x_token 用户令牌"
+// @Param     x_token  header    string                 true  "x_token 用户令牌"
 // @Param     data           query      request.UpdateInfo  true  "修改个性签名,性别"
 // @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  20002:用户不存在"
 // @Router    /api/v1/user/updateInfo [put]
@@ -284,7 +284,7 @@ func (u *user) UpdateUserInfo(ctx *gin.Context) {
 // @Security  BasicAuth
 // @accept    application/json
 // @Produce   application/json
-// @Param     Authorization  header    string                 true  "x_token 用户令牌"
+// @Param     x_token  header    string                 true  "x_token 用户令牌"
 // @Param     data           query      request.DelUser  true  "删除用户"
 // @Success   200            {object}  common.State{}  "1001:参数有误 1003:系统错误  20002:用户不存在"
 // @Router    /api/v1/user/update [put]
@@ -296,6 +296,20 @@ func (u *user) DeleteUser(ctx *gin.Context) {
 		return
 	}
 	if err := logic.Group.User.DeleteUser(param.UserID); err != nil {
+		rly.Reply(err)
+		return
+	}
+	rly.Reply(nil)
+}
+
+func (u *user) CreateManager(ctx *gin.Context) {
+	rly := app.NewResponse(ctx)
+	var param request.CreateManager
+	if err := ctx.ShouldBindJSON(&param); err != nil {
+		base.HandleValidatorError(ctx, err)
+		return
+	}
+	if err := logic.Group.User.CreateManager(param.Username); err != nil {
 		rly.Reply(err)
 		return
 	}

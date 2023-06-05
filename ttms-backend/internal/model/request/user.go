@@ -60,3 +60,11 @@ type UpdateInfo struct {
 type DelUser struct {
 	UserID uint `json:"userID" binding:"required"`
 }
+
+type GetList struct {
+	Page int `json:"page"`
+}
+
+type CreateManager struct {
+	Username string `json:"Username" binding:"required"`
+}

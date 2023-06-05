@@ -15,8 +15,9 @@ import (
 )
 
 func TestQueries_AddReadCountToMovie(t *testing.T) {
-	err := client.AddReadCountToMovie(context.Background(), 1)
+	data, err := client.AddReadCountToMovie(context.Background(), 7)
 	assert.NoError(t, err)
+	t.Log(data)
 }
 
 func TestFlushAllData(t *testing.T) {
@@ -25,6 +26,21 @@ func TestFlushAllData(t *testing.T) {
 }
 
 func TestQueries_FlushDataByMovieID(t *testing.T) {
-	err := client.FlushDataByMovieID(context.Background(), 1)
+	data, err := client.FlushDataByMovieID(context.Background(), []uint{1})
 	assert.NoError(t, err)
+	t.Log(data)
+}
+
+func TestGetAllDataAndFlushThem(t *testing.T) {
+	m, err := client.GetAllDataAndFlushThem(context.Background())
+	assert.NoError(t, err)
+	for k, v := range m {
+		t.Log(k, v)
+	}
+}
+
+func TestFlushDataByMovieID(t *testing.T) {
+	data, err := client.FlushDataByMovieID(context.Background(), []uint{1, 2, 3})
+	assert.NoError(t, err)
+	t.Log(data)
 }

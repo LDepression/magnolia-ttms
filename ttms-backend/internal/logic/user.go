@@ -133,6 +133,8 @@ func (u *user) Login(params request.LoginParam) (*reply.LoginRly, errcode.Err) {
 			AvatarURL: userInfo.Avatar,
 			Role:      string(userInfo.Role),
 			UserName:  userInfo.UserName,
+			Email:     userInfo.Email,
+			Signature: userInfo.Signature,
 		},
 	}, nil
 }
@@ -193,7 +195,7 @@ func (u *user) CheckIsRePeat(username string) (uint, errcode.Err) {
 	return uInfo.ID, myerr.UserAlreadyExists
 }
 
-func (u *user) GetList(page int64) (*reply.UserList, errcode.Err) {
+func (u *user) GetList() (*reply.UserList, errcode.Err) {
 	var result reply.UserList
 	q := query.NewUser()
 	allInfos, err := q.GetAllUser()
@@ -205,16 +207,7 @@ func (u *user) GetList(page int64) (*reply.UserList, errcode.Err) {
 		}
 	}
 	result.Total = len(allInfos)
-
-	UserInfos, err := q.GetList(page) //获取分页器上的数据
-	if err != nil {
-		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return nil, myerr.NoRecords
-		} else {
-			return nil, errcode.ErrServer
-		}
-	}
-	for _, userInfo := range UserInfos {
+	for _, userInfo := range allInfos {
 		result.UserInfos = append(result.UserInfos, &reply.UserInfo{
 			Username:  userInfo.UserName,
 			Signature: userInfo.Signature,
@@ -316,6 +309,21 @@ func (u *user) UpdateUserInfo(ctx *gin.Context, param request.UpdateInfo) errcod
 func (u *user) DeleteUser(uid uint) errcode.Err {
 	q := query.NewUser()
 	if err := q.DelUser(uid); err != nil {
+		return errcode.ErrServer.WithDetails(err.Error())
+	}
+	return nil
+}
+
+func (user) CreateManager(username string) errcode.Err {
+	q := query.NewUser()
+	userInfo, err := q.FindUserByUsername(username)
+	if err != nil || userInfo.ID == 0 {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return myerr.NoRecords
+		}
+		return errcode.ErrServer
+	}
+	if err := q.UpdateUserRole(username); err != nil {
 		return errcode.ErrServer.WithDetails(err.Error())
 	}
 	return nil

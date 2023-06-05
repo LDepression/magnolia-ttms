@@ -14,6 +14,7 @@ type group struct {
 	Dao    mdao
 	Worker worker
 	Maker  maker
+	Auto   auto
 }
 
 var Group = new(group)

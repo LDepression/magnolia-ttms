@@ -12,7 +12,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func Paginate(page, pageSize int) func(db *gorm.DB) *gorm.DB {
+func Paginate(page, pageSize int64) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
 		if page <= 0 {
 			page = 1
@@ -24,6 +24,6 @@ func Paginate(page, pageSize int) func(db *gorm.DB) *gorm.DB {
 			pageSize = 10
 		}
 		offset := (page - 1) * pageSize
-		return db.Offset(offset).Limit(pageSize)
+		return db.Offset(int(offset)).Limit(int(pageSize))
 	}
 }

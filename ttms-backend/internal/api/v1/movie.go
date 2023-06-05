@@ -9,6 +9,7 @@
 package v1
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"mognolia/internal/api/base"
 	"mognolia/internal/logic"
@@ -26,12 +27,13 @@ type movie struct{}
 // @Produce   application/json
 // @Param     x_token  header    string                 true  "x_token 用户令牌"
 // @Param     data           query     request.CreateMovieReq  true  "创建电影相关参数"
-// @Success   200            {object}  common.State{reply.CreateMovieRly}  "1001:参数有误 1003:系统错误 2001:鉴权失败 20001:用户已存在 30002:发送次数过多"
-// @Router    /api/v1/email/send [post]
+// @Success   200            {object}  common.State{reply.CreateMovieRly}  "1003:系统错误 2001:鉴权失败"
+// @Router    /api/v1/movie/create [post]
 func (e *movie) CreateMovie(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
 	param := request.CreateMovieReq{}
 	if err := ctx.ShouldBindJSON(&param); err != nil {
+		fmt.Println(err)
 		base.HandleValidatorError(ctx, err)
 		return
 	}
@@ -80,7 +82,7 @@ func (e *movie) DeleteMovie(ctx *gin.Context) {
 func (e *movie) GetMovieDetails(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
 	var param request.GetMovieByID
-	if err := ctx.ShouldBindQuery(&param); err != nil {
+	if err := ctx.ShouldBindJSON(&param); err != nil {
 		base.HandleValidatorError(ctx, err)
 		return
 	}
@@ -95,7 +97,7 @@ func (e *movie) GetMovieDetails(ctx *gin.Context) {
 func (e *movie) GetMovieByTagAreaPeriod(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
 	var param request.GetMovieTagsAreaPeriod
-	if err := ctx.ShouldBindQuery(&param); err != nil {
+	if err := ctx.ShouldBindJSON(&param); err != nil {
 		base.HandleValidatorError(ctx, err)
 		return
 	}
@@ -104,6 +106,74 @@ func (e *movie) GetMovieByTagAreaPeriod(ctx *gin.Context) {
 		return
 	}
 	result, err := logic.Group.Movie.GetMovieByTagAreaPeriod(param)
+	if err != nil {
+		rly.Reply(err)
+		return
+	}
+	rly.Reply(nil, result)
+}
+
+func (e *movie) GetMovieInfoByNameOrContent(ctx *gin.Context) {
+	rly := app.NewResponse(ctx)
+	param := &request.GetByKey{}
+	param.Check()
+	if err1 := ctx.ShouldBindJSON(&param); err1 != nil {
+		base.HandleValidatorError(ctx, err1)
+		return
+	}
+	rep, err := logic.Group.Movie.GetMoviesByKey(param.Key, param.Page)
+	if err != nil {
+		rly.Reply(err)
+		return
+	}
+	rly.Reply(nil, rep)
+}
+
+func (e *movie) GetMovieOrderByExpectedNum(ctx *gin.Context) {
+	rly := app.NewResponse(ctx)
+	var param request.GetByExpected
+	if err := ctx.ShouldBindJSON(&param); err != nil {
+		base.HandleValidatorError(ctx, err)
+		return
+	}
+	result, err := logic.Group.Movie.GetMovieByExpected(param.Page)
+	if err != nil {
+		rly.Reply(err)
+		return
+	}
+	rly.Reply(nil, result)
+}
+
+func (e *movie) GetMoviesByReadCount(ctx *gin.Context) {
+	rly := app.NewResponse(ctx)
+	var param request.GetByVisitCount
+	if err := ctx.ShouldBindJSON(&param); err != nil {
+		base.HandleValidatorError(ctx, err)
+		return
+	}
+	result, err := logic.Group.Movie.GetMoviesByReadCount(param.Page)
+	if err != nil {
+		rly.Reply(err)
+		return
+	}
+	rly.Reply(nil, result)
+}
+func (e *movie) UpdateMovieInfo(ctx *gin.Context) {
+	rly := app.NewResponse(ctx)
+	var param request.UpdateMovieInfo
+	if err := ctx.ShouldBindJSON(&param); err != nil {
+		base.HandleValidatorError(ctx, err)
+	}
+	if err := logic.Group.Movie.UpdateMovieInfo(param); err != nil {
+		rly.Reply(err)
+		return
+	}
+	rly.Reply(nil)
+}
+
+func (e *movie) GetAllMovie(ctx *gin.Context) {
+	rly := app.NewResponse(ctx)
+	result, err := logic.Group.Movie.GetAllMovie()
 	if err != nil {
 		rly.Reply(err)
 		return

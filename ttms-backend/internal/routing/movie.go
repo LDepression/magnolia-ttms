@@ -17,10 +17,24 @@ import (
 type movie struct{}
 
 func (m *movie) Init(r *gin.RouterGroup) {
-	g := r.Group("/movie", middleware.Auth(), middleware.AuthManager())
+
+	g := r.Group("/movie")
+	g1 := g.Use(middleware.Auth())
 	{
-		g.POST("/create", v1.Group.Movie.CreateMovie)
-		g.DELETE("/:id", v1.Group.Movie.DeleteMovie)
-		g.GET("/:id", v1.Group.Movie.GetMovieDetails)
+		g1.GET("/byTagAreaPeriod", v1.Group.Movie.GetMovieByTagAreaPeriod)
+		g1.POST("/byNameOrContent", v1.Group.Movie.GetMovieInfoByNameOrContent)
+		g1.GET("/byExpectedNums", v1.Group.Movie.GetMovieOrderByExpectedNum)
+		g1.GET("/byReadCount", v1.Group.Movie.GetMoviesByReadCount)
+		g1.POST("/details", v1.Group.Movie.GetMovieDetails)
 	}
+
+	g2 := g.Use(middleware.Auth(), middleware.AuthManager())
+	{
+		g2.POST("/create", v1.Group.Movie.CreateMovie)
+		g2.DELETE("", v1.Group.Movie.DeleteMovie)
+		g2.PUT("/update", v1.Group.Movie.UpdateMovieInfo)
+		g1.GET("/list", v1.Group.Movie.GetAllMovie)
+
+	}
+
 }
