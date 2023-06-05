@@ -2040,3 +2040,20 @@ Key: 'RegisterParam.EmailCode' Error:Field validation for 'EmailCode' failed on 
 2023-06-05T11:32:04.974+0800	INFO	logic/auto.go:56	start movieVisitCountFlush task....
 2023-06-05T11:32:11.629+0800	INFO	middleware/auth.go:51	Claims
 2023-06-05T11:32:37.850+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:38:16.092+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:40:45.194+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:40:54.583+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:41:25.973+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:42:04.977+0800	INFO	logic/auto.go:80	start peopleFavorToCache task ...
+2023-06-05T11:42:04.977+0800	INFO	logic/auto.go:56	start movieVisitCountFlush task....
+2023-06-05T11:45:58.658+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:46:39.878+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:46:42.434+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:46:44.652+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:46:58.906+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:52:04.985+0800	INFO	logic/auto.go:80	start peopleFavorToCache task ...
+2023-06-05T11:52:04.985+0800	INFO	logic/auto.go:56	start movieVisitCountFlush task....
+2023-06-05T11:52:39.966+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:52:40.631+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:52:45.081+0800	INFO	middleware/auth.go:51	Claims
+2023-06-05T11:52:53.844+0800	INFO	middleware/auth.go:51	Claims
