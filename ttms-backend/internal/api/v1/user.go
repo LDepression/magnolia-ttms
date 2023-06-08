@@ -21,6 +21,7 @@ import (
 	"mognolia/internal/myerr"
 	"mognolia/internal/pkg/app"
 	"mognolia/internal/pkg/app/errcode"
+	"mognolia/internal/pkg/utils"
 )
 
 type user struct{}
@@ -151,7 +152,7 @@ func (u *user) IsRePeat(ctx *gin.Context) {
 }
 
 // List
-// @Tags      manager
+// @Tags      FuncMgr
 // @Summary   获取用户列表
 // @Security  BasicAuth
 // @accept    application/json
@@ -159,7 +160,7 @@ func (u *user) IsRePeat(ctx *gin.Context) {
 // @Param     x_token  header    string                 true  "x_token 用户令牌"
 // @Param     page           path      string                 true  "页码"
 // @Success   200            {object}  common.State{data=reply.UserList}  "1001:参数有误 1003:系统错误 2001:鉴权失败 30004:权限不够 30005:无相关记录"
-// @Router    /api/v1/manager/list [get]
+// @Router    /api/v1/FuncMgr/list [get]
 func (u *user) List(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
 	content, err := middleware.GetContext(ctx)
@@ -279,7 +280,7 @@ func (u *user) UpdateUserInfo(ctx *gin.Context) {
 }
 
 // DeleteUser
-// @Tags      manager
+// @Tags      FuncMgr
 // @Summary   管理员删除用户
 // @Security  BasicAuth
 // @accept    application/json
@@ -290,12 +291,9 @@ func (u *user) UpdateUserInfo(ctx *gin.Context) {
 // @Router    /api/v1/user/update [put]
 func (u *user) DeleteUser(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
-	var param request.DelUser
-	if err := ctx.ShouldBindJSON(&param); err != nil {
-		base.HandleValidatorError(ctx, err)
-		return
-	}
-	if err := logic.Group.User.DeleteUser(param.UserID); err != nil {
+	iStr := ctx.Param("UserID")
+	i := utils.StringToIDMust(iStr)
+	if err := logic.Group.User.DeleteUser(uint(i)); err != nil {
 		rly.Reply(err)
 		return
 	}

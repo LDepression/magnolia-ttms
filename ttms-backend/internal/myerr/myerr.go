@@ -23,4 +23,7 @@ var (
 	FileIsEmpty             = errcode.NewErr(30006, "文件为空")
 	ErrMovieAlreadyExists   = errcode.NewErr(30007, "电影已经存在了")
 	ErrHasFavoriteThisMovie = errcode.NewErr(30008, "用户已经关注了这部电影")
+	ErrLockTickets          = errcode.NewErr(30009, "票已经被锁定了")
+	ErrCreateOrder          = errcode.NewErr(30010, "生成订单失败")
+	NotLockTicket           = errcode.NewErr(30011, "用户没有锁票不能购买")
 )

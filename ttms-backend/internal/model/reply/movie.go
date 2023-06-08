@@ -20,6 +20,7 @@ type MovieInfo struct {
 	MovieID   uint     `json:"movieID"`
 	Avatar    string   `json:"avatar"`
 	Name      string   `json:"name"`
+	Content   string   `json:"content"`
 	Actors    []string `json:"actors"`
 	Director  string   `json:"director"`
 	Duration  int64    `json:"duration"`

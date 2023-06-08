@@ -20,12 +20,12 @@ type seat struct{}
 
 func (s *seat) ShowSeats(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
-	param := request.ShowSeatsParam{}
-	if err := ctx.ShouldBindJSON(&param); err != nil {
+	req := request.ShowSeatsParam{}
+	if err := ctx.ShouldBindJSON(&req); err != nil {
 		base.HandleValidatorError(ctx, err)
 		return
 	}
-	result, err := logic.Group.Seat.ShowSeats(param.CinemaID)
+	result, err := logic.Group.Seat.ShowSeats(req.PlanID, req.CinemaID)
 	if err != nil {
 		rly.Reply(err)
 		return

@@ -48,7 +48,7 @@ func (CinemaWithTX) CreateCinema(req request.CreateCinema) error {
 				CinemaID: cinema.ID,
 				Row:      i,
 				Col:      j,
-				Status:   automigrate.SeatForSaleStatus,
+				Status:   automigrate.SeatNormal,
 			})
 		}
 	}

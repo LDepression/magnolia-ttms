@@ -9,6 +9,7 @@
 package reply
 
 type CinemaInfo struct {
+	ID     uint   `json:"ID"`
 	Name   string `json:"name" `
 	Avatar string `json:"avatar"`
 	Rows   int    `json:"rows"`

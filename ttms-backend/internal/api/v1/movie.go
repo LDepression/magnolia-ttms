@@ -11,10 +11,12 @@ package v1
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 	"mognolia/internal/api/base"
 	"mognolia/internal/logic"
 	"mognolia/internal/model/request"
 	"mognolia/internal/pkg/app"
+	"mognolia/internal/pkg/utils"
 )
 
 type movie struct{}
@@ -98,6 +100,8 @@ func (e *movie) GetMovieByTagAreaPeriod(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
 	var param request.GetMovieTagsAreaPeriod
 	if err := ctx.ShouldBindJSON(&param); err != nil {
+		zap.S().Info(err)
+		fmt.Println(err)
 		base.HandleValidatorError(ctx, err)
 		return
 	}
@@ -131,12 +135,9 @@ func (e *movie) GetMovieInfoByNameOrContent(ctx *gin.Context) {
 
 func (e *movie) GetMovieOrderByExpectedNum(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
-	var param request.GetByExpected
-	if err := ctx.ShouldBindJSON(&param); err != nil {
-		base.HandleValidatorError(ctx, err)
-		return
-	}
-	result, err := logic.Group.Movie.GetMovieByExpected(param.Page)
+	iStr := ctx.Param("page")
+	i := utils.StringToIDMust(iStr)
+	result, err := logic.Group.Movie.GetMovieByExpected(i)
 	if err != nil {
 		rly.Reply(err)
 		return
@@ -146,12 +147,7 @@ func (e *movie) GetMovieOrderByExpectedNum(ctx *gin.Context) {
 
 func (e *movie) GetMoviesByReadCount(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
-	var param request.GetByVisitCount
-	if err := ctx.ShouldBindJSON(&param); err != nil {
-		base.HandleValidatorError(ctx, err)
-		return
-	}
-	result, err := logic.Group.Movie.GetMoviesByReadCount(param.Page)
+	result, err := logic.Group.Movie.GetMoviesByReadCount()
 	if err != nil {
 		rly.Reply(err)
 		return

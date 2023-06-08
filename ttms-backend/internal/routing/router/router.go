@@ -38,6 +38,8 @@ func NewRouter() *gin.Engine {
 		routing.Group.Pm.Init(root)
 		routing.Group.Seat.Init(root)
 		routing.Group.Cinema.Init(root)
+		routing.Group.Plan.Init(root)
+		routing.Group.Ticket.Init(root)
 	}
 	return r
 }

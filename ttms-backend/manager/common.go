@@ -1,32 +1,27 @@
 /**
  * @Author: lenovo
  * @Description:
- * @File:  db
+ * @File:  common
  * @Version: 1.0.0
- * @Date: 2023/05/29 9:59
+ * @Date: 2023/06/06 23:03
  */
 
-package mysql
+package manager
 
 import (
 	"fmt"
-	"log"
-	"mognolia/internal/dao"
-	"mognolia/internal/global"
-	"mognolia/internal/model/automigrate"
-	"os"
-	"time"
-
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
+	"log"
+	"mognolia/internal/dao"
+	"os"
+	"time"
 )
 
-func InitMySql() {
-	m := global.Settings.Mysql
-	fmt.Println(m)
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", m.User, m.Password, m.Host, m.Port, m.DbName)
+func init() {
+	dsn := "root:zxz123456@tcp(127.0.0.1:3306)/gin-vue-ttms?charset=utf8mb4&parseTime=True&loc=Local"
 	fmt.Println(dsn)
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags),
@@ -47,5 +42,4 @@ func InitMySql() {
 		panic(err)
 	}
 	dao.Group.DB = DB
-	DB.AutoMigrate(&automigrate.Tag{}, &automigrate.ManagerMovie{}, &automigrate.Cinema{}, &automigrate.Plan{}, &automigrate.Seat{}, &automigrate.Ticket{}, &automigrate.Order{})
 }

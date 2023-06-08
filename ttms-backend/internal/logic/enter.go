@@ -19,6 +19,7 @@ type group struct {
 	Cinema cinema
 	Plan   plan
 	Seat   seat
+	Ticket ticket
 }
 
 var Group = new(group)

@@ -180,7 +180,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/v1/manager/list/:page": {
+        "/api/v1/FuncMgr/list/:page": {
             "get": {
                 "security": [
                     {
@@ -194,7 +194,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "manager"
+                    "FuncMgr"
                 ],
                 "summary": "获取用户列表",
                 "parameters": [
@@ -754,7 +754,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "manager"
+                    "FuncMgr"
                 ],
                 "summary": "管理员删除用户",
                 "parameters": [

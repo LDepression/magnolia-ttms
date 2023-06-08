@@ -40,8 +40,15 @@ func (a *auto) Work() {
 		TimeoutDuration: global.Settings.Serve.DefaultContextTimeout,
 		F:               peopleFavorToCache(),
 	}
+	deleteTimeOutPlans := t.Task{
+		Name:            "deleteTimeOutPlans",
+		Ctx:             ctx,
+		TaskDuration:    global.Settings.Auto.DeleteOutTimeTime,
+		TimeoutDuration: global.Settings.Serve.DefaultContextTimeout,
+		F:               deleteTimeOutPlans(),
+	}
 
-	tasks = append(tasks, movieReadCountFlush2DBTask, peopleFavorToCache)
+	tasks = append(tasks, movieReadCountFlush2DBTask, peopleFavorToCache, deleteTimeOutPlans)
 	a.Init()
 }
 
@@ -103,6 +110,31 @@ func peopleFavorToCache() t.DoFunc {
 			if ok {
 				break
 			}
+		}
+	}
+}
+
+func deleteTimeOutPlans() t.DoFunc {
+	return func(parentCtx context.Context) {
+		global.Logger.Info("start deleteTimeOutPlans ...")
+		var ids []uint
+
+		if result := dao.Group.DB.Raw(`
+		select p.id
+		from plans p
+		where p.end_at <= now()	
+		AND p.deleted_at IS NULL
+`).Scan(&ids); result.Error != nil {
+			zap.S().Info("select p.id failed err:%v", result.Error)
+			return
+		}
+		if result := dao.Group.DB.Model(&automigrate.Ticket{}).Where("plan_id in ?", ids).Delete(&automigrate.Ticket{}); result.RowsAffected == 0 {
+			zap.S().Infof("delete ticket failed err:%v", result.Error)
+			return
+		}
+		if err := dao.Group.DB.Model(&automigrate.Plan{}).Where("end_at <= NOW()").Delete(&automigrate.Plan{}); err != nil {
+			zap.S().Info("delete timeOutPlans failed,err:%v", err)
+			return
 		}
 	}
 }

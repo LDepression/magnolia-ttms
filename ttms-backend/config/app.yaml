@@ -38,6 +38,8 @@ Rule:
   DefaultInsertDataNum : 50
   DefaultUserFavorPage: 5 # 用户关注电影的总页数
   DefaultUserFavorSize: 10 #用户关注电影每页的个数
+  LockTicketTime: 15m #锁票的超时时间
+  LockOrderTime: 15m #订单超时的时间
 SMTPInfo:
   host: "smtp.qq.com"
   port: 465
@@ -67,3 +69,4 @@ AliyunOSS:
 Auto:
   AutoFlushReadCount2DBTime: 10m
   PeopleFavorToCacheTime: 10m
+  DeleteOutTimeTime: 10m

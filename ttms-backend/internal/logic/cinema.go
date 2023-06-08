@@ -49,6 +49,7 @@ func (cinema) GetAllCinemaByPage(page int) ([]reply.CinemaInfo, errcode.Err) {
 	}
 	for i := range cinemas {
 		result = append(result, reply.CinemaInfo{
+			ID:     cinemas[i].ID,
 			Name:   cinemas[i].Name,
 			Avatar: cinemas[i].Avatar,
 			Rows:   cinemas[i].Rows,

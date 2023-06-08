@@ -15,6 +15,7 @@ import (
 	"mognolia/internal/logic"
 	"mognolia/internal/model/request"
 	"mognolia/internal/pkg/app"
+	"mognolia/internal/pkg/utils"
 )
 
 type cinema struct{}
@@ -50,12 +51,9 @@ func (c *cinema) DelCinema(ctx *gin.Context) {
 
 func (c *cinema) GetAllCinemaByPage(ctx *gin.Context) {
 	rly := app.NewResponse(ctx)
-	var param request.GetCinemaByPage
-	if err := ctx.ShouldBindJSON(&param); err != nil {
-		base.HandleValidatorError(ctx, err)
-		return
-	}
-	result, err := logic.Group.Cinema.GetAllCinemaByPage(param.Page)
+	iStr := ctx.Param("page")
+	i := utils.StringToIDMust(iStr)
+	result, err := logic.Group.Cinema.GetAllCinemaByPage(int(i))
 	if err != nil {
 		rly.Reply(err)
 		return

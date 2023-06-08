@@ -12,10 +12,11 @@ import "mognolia/internal/model/automigrate"
 
 type ShowSeatsParam struct {
 	CinemaID uint `json:"cinemaID" binding:"required"`
+	PlanID   uint `json:"planID" binding:"required"`
 }
 
 type UpdateSeatStatus struct {
 	CinemaID uint                   `json:"cinemaID" binding:"required"`
 	SeatID   uint                   `json:"seatID" binding:"required"`
-	Status   automigrate.SeatStatus `json:"status" binding:"required,oneof=for_sale lock saled"`
+	Status   automigrate.SeatStatus `json:"status" binding:"required,oneof=normal broken"`
 }

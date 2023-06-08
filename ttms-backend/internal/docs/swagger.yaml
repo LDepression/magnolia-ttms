@@ -295,7 +295,7 @@ paths:
       - BasicAuth: []
       summary: 获取用户列表
       tags:
-      - manager
+      - FuncMgr
   /api/v1/movie/create:
     post:
       consumes:
@@ -633,7 +633,7 @@ paths:
       - BasicAuth: []
       summary: 管理员删除用户
       tags:
-      - manager
+      - FuncMgr
   /api/v1/user/updateInfo:
     put:
       consumes:

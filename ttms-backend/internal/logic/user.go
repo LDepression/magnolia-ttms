@@ -130,6 +130,7 @@ func (u *user) Login(params request.LoginParam) (*reply.LoginRly, errcode.Err) {
 		RefreshToken: refreshResult.Token,
 		PayLoad:      accessResult.Payload,
 		UserInfo: reply.UserInfoReply{
+			UserID:    userInfo.ID,
 			AvatarURL: userInfo.Avatar,
 			Role:      string(userInfo.Role),
 			UserName:  userInfo.UserName,
@@ -209,6 +210,7 @@ func (u *user) GetList() (*reply.UserList, errcode.Err) {
 	result.Total = len(allInfos)
 	for _, userInfo := range allInfos {
 		result.UserInfos = append(result.UserInfos, &reply.UserInfo{
+			UserID:    userInfo.ID,
 			Username:  userInfo.UserName,
 			Signature: userInfo.Signature,
 			Gender:    string(userInfo.Gender),

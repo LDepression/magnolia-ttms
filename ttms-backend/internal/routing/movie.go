@@ -21,9 +21,9 @@ func (m *movie) Init(r *gin.RouterGroup) {
 	g := r.Group("/movie")
 	g1 := g.Use(middleware.Auth())
 	{
-		g1.GET("/byTagAreaPeriod", v1.Group.Movie.GetMovieByTagAreaPeriod)
+		g1.POST("/byTagAreaPeriod", v1.Group.Movie.GetMovieByTagAreaPeriod)
 		g1.POST("/byNameOrContent", v1.Group.Movie.GetMovieInfoByNameOrContent)
-		g1.GET("/byExpectedNums", v1.Group.Movie.GetMovieOrderByExpectedNum)
+		g1.GET("/byExpectedNums/:page", v1.Group.Movie.GetMovieOrderByExpectedNum)
 		g1.GET("/byReadCount", v1.Group.Movie.GetMoviesByReadCount)
 		g1.POST("/details", v1.Group.Movie.GetMovieDetails)
 	}
@@ -34,7 +34,6 @@ func (m *movie) Init(r *gin.RouterGroup) {
 		g2.DELETE("", v1.Group.Movie.DeleteMovie)
 		g2.PUT("/update", v1.Group.Movie.UpdateMovieInfo)
 		g1.GET("/list", v1.Group.Movie.GetAllMovie)
-
 	}
 
 }

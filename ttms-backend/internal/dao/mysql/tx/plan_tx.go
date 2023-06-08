@@ -40,26 +40,28 @@ func (planTX) CreatePlanWithTX(req request.CreatePlan) (*reply.CreatePlanRly, er
 		tx.Rollback()
 		return nil, gorm.ErrRecordNotFound
 	}
-	endAt := time.Unix(req.StartTime, 0).Add(time.Duration(movieInfo.Duration) * time.Minute)
+	endAt := time.Unix(req.StartTime, 0).Add(time.Duration(movieInfo.Duration) * time.Minute).Truncate(time.Second)
 	var ids []uint
+
+	//这个sql语句还是有问题
 	if result := tx.Raw(`
-	SELECT
-	p.id 
+SELECT
+	pl.id 
 FROM
-	plans p 
+	plans pl
 WHERE
-	p.cinema_id =? 
+	pl.cinema_id = ?
 	AND (
-		p.start_at <= ? AND P.end_at >=? 
-		OR p.start_at <=? 
-		AND p.end_at <=? 
-		OR p.start_at BETWEEN ? 
+		pl.start_at <= ? AND pl.end_at >= ? 
+		OR pl.start_at >= ? 
+		AND pl.end_at <= ? 
+		OR pl.start_at BETWEEN ? 
 		AND ? 
-		OR P.end_at BETWEEN ? 
+		OR pl.end_at BETWEEN ? 
 	AND ? 
 	)
-	for update
-`, req.MovieID, req.StartTime, endAt, req.StartTime, endAt, req.StartTime, endAt).Scan(&ids); result.RowsAffected != 0 {
+	AND pl.deleted_at IS NULL
+`, req.CinemaID, time.Unix(req.StartTime, 0), endAt, time.Unix(req.StartTime, 0), endAt, time.Unix(req.StartTime, 0), endAt, time.Unix(req.StartTime, 0), endAt).Scan(&ids); result.RowsAffected != 0 {
 		tx.Rollback()
 		return nil, ErrPlanConflict
 	}
@@ -68,7 +70,7 @@ WHERE
 	plan := &automigrate.Plan{
 		MovieID:  req.MovieID,
 		CinemaID: req.CinemaID,
-		StartAt:  time.Unix(req.StartTime, 0),
+		StartAt:  time.Unix(req.StartTime, 0).Truncate(time.Second),
 		EndAt:    endAt,
 		Price:    req.Price,
 	}
@@ -86,25 +88,69 @@ WHERE
 
 	//创建票
 
-	type CreateTicketParam struct {
-		Price  float64 `json:"price"`
-		PlanID uint    `json:"plan_id"`
-		SeatID uint    `json:"seat_id"`
-	}
-	CreateTicketArg := make([]CreateTicketParam, 0, len(seats))
+	ticketInfos := make([]automigrate.Ticket, 0, len(seats))
 	for i := range seats {
-		CreateTicketArg = append(CreateTicketArg, CreateTicketParam{
-			Price:  req.Price,
-			PlanID: plan.ID,
-			SeatID: seats[i].ID,
+		ticketInfos = append(ticketInfos, automigrate.Ticket{
+			Price:        req.Price,
+			PlanID:       plan.ID,
+			SeatID:       seats[i].ID,
+			TicketStatus: automigrate.ForSaleStatus,
 		})
 	}
-	if result := tx.Model(&automigrate.Ticket{}).Create(&CreateTicketArg); result.RowsAffected == 0 {
+	if result := tx.Model(&automigrate.Ticket{}).Create(&ticketInfos); result.RowsAffected == 0 {
 		return nil, result.Error
 	}
+	res.PlanID = plan.ID
 	res.EndAt = endAt
 	res.StartAt = plan.StartAt
 
 	tx.Commit()
 	return res, nil
+}
+
+func (planTX) DeletePlan(planID uint) error {
+	tx := dao.Group.DB.Begin()
+	//查询
+
+	//在演出计划中,是不能被删除的
+	//	在演出时间内的planID有没有锁上
+	if result := tx.Raw(`
+SELECT
+	1
+FROM
+	plan p,
+	tickets t 
+WHERE
+	p.id = ? 
+	AND t.plan_id = p.id 
+	AND (
+	s.STATUS = '"saled"' 
+	OR s.STATUS = '"lock"')
+	AND p.end_at > NOW() 
+`, planID); result.RowsAffected != 0 {
+		tx.Rollback()
+		return ErrPlanConflict
+	}
+	if result := tx.Model(&automigrate.Plan{}).Where("id = ?", planID).Delete(&automigrate.Plan{}); result.RowsAffected == 0 {
+		tx.Rollback()
+		return result.Error
+	}
+	if result := tx.Model(&automigrate.Ticket{}).Where("plan_id = ?", planID).Delete(&automigrate.Ticket{}); result.RowsAffected == 0 {
+		tx.Rollback()
+		return result.Error
+	}
+	tx.Commit()
+	return nil
+}
+
+func (planTX) GetPlansByMovieIDAndPeriod(req request.GetPlansByMovieIDAndPeriod) ([]automigrate.Plan, error) {
+	var plans []automigrate.Plan
+	tx := dao.Group.DB.Begin()
+	if result := tx.Model(&automigrate.Plan{}).Where("movie_id = ?", req.MovieID).
+		Where("end_at between ? and ?", time.Unix(req.StartAt, 0), time.Unix(req.EndAt, 0)).
+		Where("start_at > now()").Preload("Movie").Preload("Cinema").Find(&plans); result.RowsAffected == 0 {
+		tx.Rollback()
+		return nil, gorm.ErrRecordNotFound
+	}
+	return plans, nil
 }

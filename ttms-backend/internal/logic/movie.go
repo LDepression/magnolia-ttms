@@ -217,10 +217,10 @@ func (m *movie) GetMovieByExpected(page int64) (*reply.GetMovieRly, errcode.Err)
 	return &result, nil
 }
 
-func (movie) GetMoviesByReadCount(page int64) (*reply.GetMovieRly, errcode.Err) {
+func (movie) GetMoviesByReadCount() (*reply.GetMovieRly, errcode.Err) {
 	var result reply.GetMovieRly
 	q := query.NewMovie()
-	movies, err := q.GetMoviesOrderbyReadCount(page)
+	movies, err := q.GetMoviesOrderbyReadCount(0)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, myerr.NoRecords

@@ -21,7 +21,7 @@ func (c *cinema) Init(r *gin.RouterGroup) {
 	{
 		g.POST("/create", v1.Group.Cinema.CreateCinema)
 		g.DELETE("/delete", v1.Group.Cinema.DelCinema)
-		g.GET("/list", v1.Group.Cinema.GetAllCinemaByPage)
+		g.GET("/list/:page", v1.Group.Cinema.GetAllCinemaByPage)
 		g.PUT("/update", v1.Group.Cinema.UpdateCinema)
 		g.GET("/details", v1.Group.Cinema.GetCinemaDetails)
 	}

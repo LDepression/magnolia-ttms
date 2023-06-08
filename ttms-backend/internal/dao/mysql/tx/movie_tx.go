@@ -118,7 +118,9 @@ func (m *MovieTX) GetMovieDetails(movieID uint) (*reply.GetMovieDetails, error) 
 		MovieInfoRow: reply.MovieInfo{
 			MovieID:   movie.ID,
 			Name:      movie.Name,
+			Content:   movie.Content,
 			Actors:    movie.Actors,
+			Avatar:    movie.Avatar,
 			Director:  movie.Director,
 			Score:     movie.Score,
 			Duration:  movie.Duration,

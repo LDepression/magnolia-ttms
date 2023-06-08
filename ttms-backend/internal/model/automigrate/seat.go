@@ -13,9 +13,8 @@ import "gorm.io/gorm"
 type SeatStatus string
 
 const (
-	SeatLockStatus    SeatStatus = "lock"
-	SeatForSaleStatus SeatStatus = "for_sale"
-	SeatSaledStatus   SeatStatus = "saled"
+	SeatLockStatus SeatStatus = "broken"
+	SeatNormal     SeatStatus = "normal"
 )
 
 type Seat struct {

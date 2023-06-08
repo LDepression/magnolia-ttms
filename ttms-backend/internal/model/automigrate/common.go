@@ -71,3 +71,13 @@ func (g SeatStatus) Value() (driver.Value, error) {
 func (g *SeatStatus) Scan(value interface{}) error {
 	return json.Unmarshal(value.([]byte), &g)
 }
+
+func (g OrderStatus) Value() (driver.Value, error) {
+	return json.Marshal(g)
+}
+
+// 实现 sql.Scanner 接口，Scan 将 value 扫描至 Jsonb
+
+func (g *OrderStatus) Scan(value interface{}) error {
+	return json.Unmarshal(value.([]byte), &g)
+}

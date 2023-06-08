@@ -23,12 +23,12 @@ const (
 
 type Ticket struct {
 	gorm.Model
-	PlanID   uint
-	Plan     Plan `gorm:"foreignKey:PlanID;references:ID"`
-	UserID   uint `gorm:"index"`
-	SeatID   uint
-	Seat     Seat    `gorm:"foreignKey:SeatID;references:ID"`
-	Price    float64 `gorm:"type:float;not null"`
-	Status   TicketStatus
-	LockTime *time.Time
+	PlanID       uint
+	Plan         Plan `gorm:"foreignKey:PlanID;references:ID"`
+	UserID       uint `gorm:"index"`
+	SeatID       uint
+	Seat         Seat         `gorm:"foreignKey:SeatID;references:ID"`
+	Price        float64      `gorm:"type:float;not null"`
+	TicketStatus TicketStatus `gorm:"type:varchar(100)"`
+	LockTime     *time.Time
 }

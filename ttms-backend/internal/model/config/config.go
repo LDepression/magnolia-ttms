@@ -84,6 +84,8 @@ type Rule struct {
 	DefaultInsertDataNum int           `json:"DefaultInsertDataNum" mapstructure:"DefaultInsertDataNum"`
 	DefaultUserFavorPage int           `json:"DefaultUserFavorPage" mapstructure:"DefaultUserFavorPage"` //用户关注的电影的页数
 	DefaultUserFavorSize int           `json:"DefaultUserFavorSize" mapstructure:"DefaultUserFavorSize"` //用户每页关注的数量
+	LockTicketTime       time.Duration `json:"LockTicketTime" mapstructure:"LockTicketTime"`
+	LockOrderTime        time.Duration `json:"LockOrderTime" mapstructure:"LockOrderTime"`
 }
 type Work struct {
 	TaskChanCapacity   int `json:"taskChanCapacity" mapstructure:"taskChanCapacity"`
@@ -110,4 +112,5 @@ type AliyunOSS struct {
 type Auto struct {
 	AutoFlushReadCount2DBTime time.Duration `json:"autoFlushReadCount2DBTime" mapstructure:"AutoFlushReadCount2DBTime"`
 	PeopleFavorToCacheTime    time.Duration `json:"peopleFavorToCacheTime" mapstructure:"PeopleFavorToCacheTime"`
+	DeleteOutTimeTime         time.Duration `json:"DeleteOutTimeTime" mapstructure:"DeleteOutTimeTime"`
 }

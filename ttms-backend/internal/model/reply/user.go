@@ -15,6 +15,7 @@ type RegisterRly struct {
 }
 
 type UserInfoReply struct {
+	UserID    uint   `json:"user_id"`
 	AvatarURL string `json:"AvatarURL"`
 	Role      string `json:"Role"`
 	UserName  string `json:"user_name"`
@@ -34,6 +35,7 @@ type RefreshRly struct {
 }
 
 type UserInfo struct {
+	UserID    uint   `json:"userID"`
 	Username  string `json:"username"`
 	Signature string `json:"signature"`
 	Gender    string `json:"gender"`

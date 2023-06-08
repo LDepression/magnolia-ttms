@@ -19,7 +19,7 @@ import (
 
 type seat struct{}
 
-func (seat) ShowSeats(cinemaID uint) (*reply.ShowCinemaSeats, errcode.Err) {
+func (seat) ShowSeats(planID, cinemaID uint) (*reply.ShowCinemaSeats, errcode.Err) {
 	var result reply.ShowCinemaSeats
 	tx := tx2.NewSeatWithTX()
 	ShowCinemaSeatsRows, err := tx.GetAllSeatsInfoByCinemaID(cinemaID)

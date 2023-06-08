@@ -36,7 +36,7 @@ func (u *user) Init(r *gin.RouterGroup) {
 	{
 		manager.GET("/list", v1.Group.User.List)
 		manager.POST("/register", v1.Group.User.Register)
-		manager.DELETE("", v1.Group.User.DeleteUser)
+		manager.DELETE("/:UserID", v1.Group.User.DeleteUser)
 		manager.POST("/createManager", v1.Group.User.CreateManager)
 	}
 }

@@ -57,6 +57,7 @@ func main() {
 	global.Logger.Info("Server started!")
 	fmt.Println("AppName:", global.Settings.App.Name, "Version:", global.Settings.App.Version, "Address:", global.Settings.Serve.Address, "RunMode:", global.Settings.Serve.RunMode)
 	setting.Group.Auto.Init()
+
 	go func() {
 		err := s.ListenAndServe()
 		if err != nil {

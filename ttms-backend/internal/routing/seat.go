@@ -19,7 +19,7 @@ type seat struct{}
 func (seat) Init(r *gin.RouterGroup) {
 	g := r.Group("/seat", middleware.Auth(), middleware.AuthManager())
 	{
-		g.GET("/showSeatsByCinemaID", v1.Group.Seat.ShowSeats)
+		g.GET("/showSeatsByCinemaID/:cinemaID", v1.Group.Seat.ShowSeats)
 		g.PUT("/update", v1.Group.Seat.UpdateSeatStatus)
 	}
 }
