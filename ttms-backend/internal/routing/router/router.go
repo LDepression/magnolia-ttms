@@ -29,6 +29,11 @@ func NewRouter() *gin.Engine {
 				"msg": "ok",
 			})
 		})
+		r.LoadHTMLFiles("../dist/index.html") // 加载html
+		r.Static("/static", "./static")       // 加载静态文件
+		r.GET("/", func(context *gin.Context) {
+			context.HTML(http.StatusOK, "index.html", nil)
+		})
 		r.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))
 		routing.Group.User.Init(root)
 		routing.Group.Email.Init(root)

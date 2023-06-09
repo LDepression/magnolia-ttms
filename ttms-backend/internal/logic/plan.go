@@ -17,8 +17,6 @@ import (
 	"mognolia/internal/model/request"
 	"mognolia/internal/myerr"
 	"mognolia/internal/pkg/app/errcode"
-	"mognolia/manager"
-	"time"
 )
 
 type plan struct{}
@@ -29,8 +27,6 @@ func (plan) CreatePlan(req request.CreatePlan) (*reply.CreatePlanRly, errcode.Er
 	if err != nil {
 		return nil, errcode.ErrServer.WithDetails(err.Error())
 	}
-	timeout := time.Until(rly.EndAt)
-	manager.Manager().Set(rly.PlanID, timeout)
 	return rly, nil
 }
 
@@ -41,7 +37,6 @@ func (plan) DelPlan(planID uint) errcode.Err {
 	}
 	ids := make([]uint, 0)
 	ids = append(ids, planID)
-	manager.Manager().Del(ids)
 	return nil
 }
 

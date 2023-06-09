@@ -22,8 +22,11 @@ var (
 
 type Order struct {
 	gorm.Model
-	OrderID    uuid.UUID   `gorm:"type:varchar(100);not null"`
-	UserID     uint        `gorm:"type:int;not null"`
+	OrderID    uuid.UUID `gorm:"type:varchar(100);not null"`
+	PlanID     uint      `gorm:"type:int;not null"`
+	UserID     uint      `gorm:"type:int;not null"`
+	MovieID    uint
+	Movie      Movie       `gorm:"foreignKey:MovieID;references:ID"`
 	UserName   string      `gorm:"type:varchar(20);not null"`
 	CinemaName string      `gorm:"type:varchar(30);not null"`
 	Status     OrderStatus `gorm:"type:varchar(20)"`

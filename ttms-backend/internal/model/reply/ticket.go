@@ -8,7 +8,10 @@
 
 package reply
 
-import "mognolia/internal/model/automigrate"
+import (
+	"mognolia/internal/model/automigrate"
+	"time"
+)
 
 type TicketInfo struct {
 	SeatID       uint `gorm:"column:seat_id"`
@@ -22,4 +25,20 @@ type TicketInfo struct {
 
 type ShowTicket struct {
 	Tickets [][]TicketInfo
+}
+
+// 电影名,cinemaID,几排几列,作为ID,时间,价格
+type OrderInfoRly struct {
+	OrderID    string
+	MovieName  string
+	PlanID     uint
+	Seats      string //行数列数
+	SeatIDs    string
+	UpdateTime time.Time
+	Price      float32
+	Status     automigrate.OrderStatus
+}
+
+type Orders struct {
+	OrderInfos []*OrderInfoRly
 }

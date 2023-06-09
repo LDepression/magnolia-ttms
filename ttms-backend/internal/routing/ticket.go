@@ -24,5 +24,5 @@ func (ticket) Init(r *gin.RouterGroup) {
 	g.POST("/pay", v1.Group.Ticket.PayTicket)
 	g.POST("/isPay", v1.Group.Ticket.SearchTicket)
 	g.POST("/backTicket", v1.Group.Ticket.BackTicket)
-
+	g.GET("/getOrders", v1.Group.Ticket.GetAllOrders)
 }

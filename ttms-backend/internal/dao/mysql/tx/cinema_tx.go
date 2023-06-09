@@ -12,6 +12,7 @@ import (
 	"errors"
 	"gorm.io/gorm"
 	"mognolia/internal/dao"
+	"mognolia/internal/global"
 	"mognolia/internal/model/automigrate"
 	"mognolia/internal/model/request"
 )
@@ -28,6 +29,9 @@ func (CinemaWithTX) CreateCinema(req request.CreateCinema) error {
 	tx := dao.Group.DB.Begin()
 	if result := tx.Model(&automigrate.Cinema{}).Where("name = ?", req.Name).Find(&automigrate.Cinema{}); result.RowsAffected != 0 {
 		return ErrCinemaAlraedyExist
+	}
+	if req.Avatar == "" {
+		req.Avatar = global.Settings.Rule.DefaultAccountAvatar
 	}
 	cinema := &automigrate.Cinema{
 		Name:   req.Name,

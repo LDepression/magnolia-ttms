@@ -57,7 +57,7 @@ func (t *TicketTX) LockTickets(req request.LockTickets, userID uint) (*reply.Rly
 	//4.获取planID
 
 	var planInfo automigrate.Plan
-	if result := tx.Model(&automigrate.Plan{}).Where("id = ?", req.PlanID).Find(&planInfo); result.RowsAffected == 0 {
+	if result := tx.Model(&automigrate.Plan{}).Where("id = ?", req.PlanID).Preload("Cinema").Find(&planInfo); result.RowsAffected == 0 {
 		tx.Rollback()
 		return nil, result.Error
 	}
@@ -73,6 +73,8 @@ func (t *TicketTX) LockTickets(req request.LockTickets, userID uint) (*reply.Rly
 	}
 	order := &automigrate.Order{
 		OrderID:    uuid.New(),
+		PlanID:     planInfo.ID,
+		MovieID:    movie.ID,
 		UserID:     userID,
 		UserName:   userInfo.UserName,
 		CinemaName: planInfo.Cinema.Name,
@@ -102,6 +104,7 @@ func (t *TicketTX) PayTicket(req request.PayTickerRowReq) error {
 		tx.Rollback()
 		return gorm.ErrRecordNotFound
 	}
+	tx.Commit()
 	return nil
 }
 
@@ -125,6 +128,10 @@ func (t *TicketTX) UpdateTicketStatus(req request.BackTicketParam) error {
 	tx := dao.Group.DB.Begin()
 	if result := tx.Model(&automigrate.Ticket{}).Where("plan_id =? and seat_id in ?", req.PlanID, req.SeatIDs).
 		Updates(map[string]interface{}{"ticket_status": automigrate.ForSaleStatus, "user_id": 0}); result.RowsAffected == 0 {
+		tx.Rollback()
+		return result.Error
+	}
+	if result := tx.Model(&automigrate.Order{}).Where("order_id = ?", req.OrderID).Delete(&automigrate.Order{}); result.RowsAffected == 0 {
 		tx.Rollback()
 		return result.Error
 	}

@@ -203,3 +203,24 @@ func (ticket) SearchTicket(uuid string) (bool, errcode.Err) {
 	}
 	return true, nil
 }
+
+func (ticket) GetAllOrders(userID uint) (*reply.Orders, errcode.Err) {
+	var orders []automigrate.Order
+	if result := dao.Group.DB.Model(&automigrate.Order{}).Where("user_id = ?", userID).Find(&orders); result.RowsAffected == 0 {
+		return nil, myerr.NoRecords
+	}
+	var res reply.Orders
+	for _, order := range orders {
+		t := &reply.OrderInfoRly{
+			PlanID:     order.PlanID,
+			OrderID:    order.OrderID.String(),
+			SeatIDs:    order.SeatsID,
+			Seats:      order.Seats,
+			UpdateTime: order.UpdatedAt,
+			Price:      order.Price,
+			Status:     order.Status,
+		}
+		res.OrderInfos = append(res.OrderInfos, t)
+	}
+	return &res, nil
+}

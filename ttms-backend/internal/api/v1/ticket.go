@@ -127,3 +127,19 @@ func (ticket) SearchTicket(ctx *gin.Context) {
 		"exist": ok,
 	})
 }
+
+func (ticket) GetAllOrders(ctx *gin.Context) {
+	rly := app.NewResponse(ctx)
+	content, err := middleware.GetContext(ctx)
+	if err != nil {
+		rly.Reply(err)
+		return
+	}
+	result, err := logic.Group.Ticket.GetAllOrders(content.ID)
+	if err != nil {
+		rly.Reply(err)
+		return
+	}
+	rly.Reply(nil, result)
+
+}

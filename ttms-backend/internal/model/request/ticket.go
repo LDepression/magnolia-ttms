@@ -34,6 +34,7 @@ type SearchTicketReq struct {
 }
 
 type BackTicketParam struct {
+	OrderID string `json:"orderID"`
 	PlanID  uint   `json:"planID"`
 	SeatIDs []uint `json:"SeatIDs"`
 }
