@@ -7,7 +7,7 @@ import { useRouter } from "vue-router"
 const router = useRouter();
 console.log(router);
 const httpInstance = axios.create({
-  baseURL: "http://192.168.3.233:9090/api/v1",
+  baseURL: "http://127.0.0.1:9090/api/v1",
   timeout: 5000,
 });
 // httpInstance.defaults.headers.common['x_token'] = `${token}`;

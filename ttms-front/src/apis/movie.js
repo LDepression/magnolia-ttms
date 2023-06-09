@@ -1,7 +1,7 @@
 import request from "./base";
 import axios from "axios"
 export const addMovie2 = (params) => {
-  return axios.post("http://192.168.1.113:9090/api/v1/movie/create",{params})
+  return axios.post("http://127.0.0.1:9090/api/v1/movie/create",{params})
 }
 export const addMovie = (params) => {
   return request({

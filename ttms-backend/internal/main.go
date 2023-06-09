@@ -14,7 +14,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"mognolia/internal/global"
-	"mognolia/internal/routing/router"
+	"mognolia/internal/routing"
 	"mognolia/internal/setting"
 	"net/http"
 	"os"
@@ -46,7 +46,7 @@ func main() {
 	if global.Settings.Serve.RunMode == "release" {
 		gin.SetMode(gin.ReleaseMode)
 	}
-	r := router.NewRouter() // 注册路由
+	r := routing.NewRouter() // 注册路由
 	s := &http.Server{
 		Addr:           global.Settings.Serve.Address,
 		Handler:        r,
