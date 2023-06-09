@@ -27,9 +27,14 @@ export default {
 
 <style scoped>
 .cardcup{
-    display:flex;
+    /* display:flex; */
     padding-top: 30px;
+    padding-bottom: 0px;
+   
     justify-content: center;
+    /* position: relative;
+    top: -80px;
+    left: -20px; */
     background-color: #fff;
 }
 .card{

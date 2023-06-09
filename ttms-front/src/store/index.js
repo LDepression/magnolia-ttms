@@ -1,30 +1,33 @@
-<<<<<<< HEAD
-import { createStore } from 'vuex'
+
+import { createStore,createLogger } from 'vuex'
  
 export default createStore({
   state: {
+    movieID:'3',
+    userList:[]
   },
-  getters: {
-  },
+  // getters: {
+  //   getUserList(state){
+  //     return state.userList
+  //   }
+  // },
   mutations: {
+    getMovieId(state,movieID){
+      state.movieID = movieID
+    },
+    setUserList(state,userList){
+      state.userList = userList
+    }
   },
   actions: {
+    
   },
   modules: {
+  },
+  getters:{
+    getUserList(state) {
+      console.log(state.userList);
+      return state.userList
+    }
   }
-=======
-import { createStore } from 'vuex'
- 
-export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
->>>>>>> 73d85f9 (添加注册功能)
 })

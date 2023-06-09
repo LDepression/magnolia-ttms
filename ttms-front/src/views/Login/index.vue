@@ -1,18 +1,20 @@
-<<<<<<< HEAD
 <script setup>
 import { ElMessage } from "element-plus";
-import { Login, getCode,isRepeat } from "../../apis/user";
+import { Login, getCode,ping } from "../../apis/user";
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
+import Cookies from 'js-cookie'
 const router = useRouter();
 const LoginType = ref(2);
-const user = reactive({
+var expires = new Date()
+expires.setTime(expires.getTime()+30*1000)
+let user = reactive({
   username: "",
   Password: "",
   Email: "",
   EmailCode: "",
 });
-const user_info = reactive({
+let user_info = reactive({
   user_name: "",
   AvatarURL: "",
   Role: "",
@@ -29,7 +31,7 @@ const changeLogin = () => {
   }
 };
 const getTestCode = async () => {
-  let res = await getCode(Email);
+  let res = await getCode(user.Email);
   if (res.status_code === 0) {
     ElMessage({
       message: "请前往邮箱查看验证码",
@@ -38,9 +40,8 @@ const getTestCode = async () => {
     });
   }
 };
-
 const isLogin = () => {
-  if (LoginType.value == 1) {
+  if (LoginType.value == 2) {
     if (user.Password == "" && user.Email != "") {
       ElMessage({
         message: "密码不能为空!!",
@@ -62,27 +63,31 @@ const isLogin = () => {
         type: "error",
       });
     } else {
-      let { Email, Password } = user;
-      Login({ Email, Password, LoginType }).then((res) => {
-        if (res.status_code == 0) {
-          //存储token  信息   页面跳转至home    home页面顶部显示用户信息
-          user_info = res.data.user_info;
-          localStorage.setItem("AccessToken", res.data.AccessToken);
-          localStorage.setItem("RefreshToken", res.data.RefreshToken);
-          if (res.data.user_info.Role == "vistor") {
+     
+      Login(user.Email, user.Password, LoginType.value ).then((res) => {
+        
+        if (res.data.status_code == 0) {
+          //存储token  信息   页面跳转至home home页面顶部显示用户信息
+          
+          user_info = res.data.data.user_info
+          Cookies.set('AccessToken',res.data.data.AccessToken, {expires:1/24 }) 
+          localStorage.setItem("RefreshToken", res.data.data.RefreshToken);
+          localStorage.setItem("AccessToken", res.data.data.AccessToken);
+          localStorage.setItem("user_info", JSON.stringify(res.data.data.user_info));
+          if (res.data.data.user_info.Role == "vistor") {
             router.push("/home");
             ElMessage({
               message: "登录成功！",
               center: true,
-              type: "error",
+              type: "success",
             });
           }
-          if(res.data.user_info.Role == "administer"){
+          if(res.data.data.user_info.Role == "administer"){
             router.push("/layout");
             ElMessage({
               message: "登录成功！",
               center: true,
-              type: "error",
+              type: "success",
             });
           }
         }else{
@@ -116,27 +121,27 @@ const isLogin = () => {
         type: "error",
       });
     } else {
-      let { Email, EmailCode } = user;
-      Login({ Email, EmailCode, LoginType }).then((res) => {
+      
+      Login( user.Email, user.EmailCode,LoginType).then((res) => {
         if (res.status_code == 0) {
           //存储token  信息   页面跳转至home    home页面顶部显示用户信息
           user_info = res.data.user_info;
-          localStorage.setItem("AccessToken", res.data.AccessToken);
+          Cookies.set('AccessToken', res.data.data.AccessToken, {expires:1/24 }) 
           localStorage.setItem("RefreshToken", res.data.RefreshToken);
           if (res.data.user_info.Role == "vistor") {
             router.push("/home");
             ElMessage({
               message: "登录成功！",
               center: true,
-              type: "error",
-            });
+              type: "success",
+            }); 
           }
           if(res.data.user_info.Role == "administer"){
             router.push("/layout");
             ElMessage({
               message: "登录成功！",
               center: true,
-              type: "error",
+              type: "success",
             });
           }
         }else{
@@ -155,24 +160,37 @@ const isLogin = () => {
 <template>
   <div class="container">
     <div class="tit">magolia影院</div>
-
+    <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+            <div class="logo2">
+                <img src="../../assets/img/logo2.png" alt="">
+            </div>
+            <div class="logo3">
+                <img src="../../assets/img/logo3.png" alt="">
+            </div>
+            <div class="logo4">
+                <img src="../../assets/img/logo4.png" alt="">
+            </div>
+    
     <el-form>
       <div class="form">
         <el-form-item class="act" label="邮箱 &nbsp&nbsp">
           <el-input
-            style="width: 200px"
+            style="width: 200px;background-color: transparent;"
+          class="inp"
             placeholder="请输入您的邮箱"
             v-model="user.Email"
           />
         </el-form-item>
-        <el-form-item class="pwd" v-if="LoginType == 1" label="密码 &nbsp&nbsp">
+        <el-form-item class="pwd" v-if="LoginType == 2" label="密码 &nbsp&nbsp">
           <el-input
             style="width: 200px"
             placeholder="请输入您的密码"
             v-model="user.Password"
           />
         </el-form-item>
-        <el-form-item class="pwd" v-if="LoginType == 2" label="验证码">
+        <el-form-item class="pwd" v-if="LoginType == 1" label="验证码">
           <el-input
             style="width: 200px"
             placeholder="请输入您的验证码"
@@ -212,154 +230,67 @@ const isLogin = () => {
   </div>
 </template>
 <style lang="css" scoped>
+@import url('../../assets/css/register.css');
+template{
+  background: linear-gradient(to bottom, #f1f4f9, #dff1ff);
+}
 .container {
   width: 400px;
-  height: 600px;
+  height: 400px;
   border: 1px solid red;
   display: flex;
+  border-radius: 30px;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
+ 
   align-items: center;
   justify-content: center;
 }
+.act{
+  position: relative;
+  left: -50px;
+  background-color: transparent;
+}
 .pwd {
   margin-top: 30px;
+  position: relative;
+  left: -50px;
 }
 .btn {
+  border-radius: 20px;
+  background-color: transparent;
   position: relative;
-  top: 50px;
+  top: 0px;
 }
+
 .tit {
   position: absolute;
-  top: 100px;
+  top: 50px;
+  color: black;
   font-size: 26px;
 }
 .form {
   position: relative;
   left: 12%;
 }
-=======
-<script setup>
-import { ElMessage } from "element-plus";
-import { ref,reactive } from "vue";
-const user = reactive({
-  username: "",
-  password: "",
-  email: "",
-});
-const isBlank = () => {
-  if (user.password == "" && user.email != "") {
-    ElMessage({
-      message: "密码不能为空!!",
-      center: true,
-      type: "error",
-    });
-  }
-  if (user.email == "" && user.password != "") {
-    ElMessage({
-      message: "邮箱不能为空!!",
-      center: true,
-      type: "error",
-    });
-  }
-  if (user.password == "" && user.email == "") {
-    ElMessage({
-      message: "账号密码不能为空!!",
-      center: true,
-      type: "error",
-    });
-  }
-  // else {
-  //     let {email,password} = this.user
-  //     this.$api.getLogin({
-  //         email,password
-  //     })
-  //     .then(res => {
-  //         if(res.data.status_code == 0) {
-  //             //1.存储登录信息 2.跳转页面 3.顶部区域显示用户
-  //             this.info=''
-  //             let obj = {
-  //                 user:{
-  //                     username:res.data.data.username,
-  //                     avatar:res.data.data.avatar,
-  //                     userId:res.data.data.user_id,
-  //                     privilege:res.data.data.privilege
-  //                 },
-  //                 token:res.data.data.refresh_token
-  //             }
-  //             // console.log(obj);
-  //             localStorage.setItem('token',obj.token)
-  //             localStorage.setItem('user',JSON.stringify(obj.user))
-  //             // //跳转
-  //             if (res.data.data.privilege=='用户') {
-  //                 this.$router.push({path:'/'})
-  //                this.$message({
-  //                         message: '登录成功',
-  //                         center: true,
-  //                         type: 'success'
-  //                         });
-  //             }
-  //             if(res.data.data.privilege=='管理员') {
-  //                 this.$router.push({ path: "/layout" })
-  //                 this.$message({
-  //                         message: '登录成功',
-  //                         center: true,
-  //                         type: 'success'
-  //                         });
-  //             }
-  //         }
-  //         else{
-  //             //账号和密码错误
-  //             this.info='账号或密码错误'
-  //         }
-  //     })
-  //     .catch (err=>{
-  //         console.log(err);
-  //     })
-  // }
-};
-</script>
-
-<template>
-  <div class="container">
-    <div class="tit">magolia影院</div>
-    <el-form>
-      <el-form-item class="act" label="邮箱">
-        <el-input style="width: 200px" placeholder="请输入您的邮箱" v-model="user.email" />
-      </el-form-item>
-      <el-form-item class="pwd" label="密码">
-        <el-input style="width: 200px" placeholder="请输入您的密码" v-model="user.password" />
-      </el-form-item>
-      <el-button class="btn" type="primary" @click="isBlank()">登录</el-button>
-      <el-button class="btn" type="primary" @click="$router.push('/register')"
-        >注册</el-button
-      >
-    </el-form>
-  </div>
-</template>
-<style lang="css" scoped>
-.container {
-  width: 400px;
-  height: 600px;
-  border: 1px solid red;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.inp{
+  background-color: transparent;
 }
-.pwd {
-  margin-top: 30px;
+.logo2{
+position: absolute;
+left: -300px;
 }
-.btn {
-  position: relative;
-  top: 50px;
-}
-.tit {
+.logo3{
   position: absolute;
-  top: 220px;
+  left:500px;
 }
->>>>>>> 73d85f9 (添加注册功能)
+.logo4{
+  position: absolute;
+  top: -150px;
+  left: -500px;
+}
 </style>
